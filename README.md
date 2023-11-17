@@ -30,6 +30,10 @@ Mismo caso de ayudas sociales.
 
 Se debe digitalizar y fidelzar el proceso de forma digital.
 
+### Collipulli:
+
+Arriendo de espacios para práctica de deporte
+
 ## Requerimientos
 
 Dentro del proceso de cada proyecto, se tienen cuatro elementos importantes:
