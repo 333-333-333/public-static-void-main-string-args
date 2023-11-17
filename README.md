@@ -32,6 +32,13 @@ Se debe digitalizar y fidelzar el proceso de forma digital.
 
 ## Requerimientos
 
+Dentro del proceso de cada proyecto, se tienen cuatro elementos importantes:
+
+- Hitos
+- Actividades
+- Documentaciónes
+- Decisiones
+
 ### Funcionales
 
 ### No Funcionales
