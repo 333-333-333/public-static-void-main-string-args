@@ -1,0 +1,30 @@
+/.idea/
+/front-end/.vscode/
+/front-end/node_modules/
+
+/back-end/.idea/
+/back-end/.mvn/
+/back-end/.mvn/wrapper
+/back-end/target/
+
+
+# Compiled output
+/front-end/dist
+/front-end/tmp
+/front-end/out-tsc
+/front-end/bazel-out
+
+/front-end/npm-debug.log
+/front-end/yarn-error.log
+
+
+# Miscellaneous
+/front-end/.angular/cache
+/front-end.sass-cache/
+/front-end/connect.lock
+/front-end/coverage
+/front-end/libpeerconnection.log
+/front-end/testem.log
+/front-end/typings
+
+
