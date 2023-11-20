@@ -1,4 +1,4 @@
-package com.dci.demo.domain.model;
+package com.dci.demo.domain;
 
 import jakarta.persistence.*;
 import lombok.Data;

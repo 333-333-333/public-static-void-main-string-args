@@ -1,7 +1,7 @@
 package com.dci.demo.repository;
 
 
-import com.dci.demo.domain.model.Recinto;
+import com.dci.demo.domain.Recinto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
