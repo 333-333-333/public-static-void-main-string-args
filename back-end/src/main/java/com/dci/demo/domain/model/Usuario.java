@@ -1,10 +1,12 @@
-package com.dci.demo.user.domain.model;
+package com.dci.demo.domain.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.util.List;
+
 
 /**
  * Usuario:
@@ -12,7 +14,10 @@ import lombok.Data;
 
 @Entity
 @Data
+@Getter
+@Setter
 public class Usuario {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +26,10 @@ public class Usuario {
     private String usuNombre;
     private String usuApellidoPaterno;
     private String usuApellidoMaterno;
+    @OneToMany
+    private List<Reserva> usuReservas;
+    @ManyToOne
+    private Rol usuRol;
 
 
 }
