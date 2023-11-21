@@ -7,8 +7,8 @@ const fakeData = {
       recCapacidad: 100,
       recTipo: "Gimnasio",
       deportes: ["fútbol", "tenis"],
-      recImagen: "https://www.certificacionsustentable.cl/wp-content/uploads/2021/10/Centro-Elige-Vivir-Sano-de-Caldera_-CES_2-768x512.jpg",
-      recPrecio: 20,
+      imagen: "https://www.sernac.cl/portal/607/articles-5029_imagen_01.jpg",
+      precioPorHora: 20,
     },
     {
       recId: 2,
