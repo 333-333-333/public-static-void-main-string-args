@@ -18,7 +18,7 @@ public class Recinto {
     private String recNombre;
     private String recDireccion;
     private String recDescripcion;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "tip_Id")
     private Tipo recTipo;
 

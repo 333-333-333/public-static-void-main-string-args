@@ -33,27 +33,27 @@ public class Preload implements CommandLineRunner {
 
         Tipo tipo2 = new Tipo();
         tipo2.setTipNombre("Gimnasio");
-        tipoRepository.save(tipo2);
+        Tipo tipo2saved = tipoRepository.save(tipo2);
 
         Tipo tipo3 = new Tipo();
         tipo3.setTipNombre("Anfiteatro");
-        tipoRepository.save(tipo3);
+        Tipo tipo3saved = tipoRepository.save(tipo3);
 
         Tipo tipo4= new Tipo();
         tipo4.setTipNombre("Piscina");
-        tipoRepository.save(tipo4);
+        Tipo tipo4saved = tipoRepository.save(tipo4);
 
 
         Recinto recinto1 = new Recinto();
         recinto1.setRecDescripcion("Multicancha deportiva para realizar multiples deportes");
         recinto1.setRecNombre("Recinto los abedules");
         recinto1.setRecDireccion("Los castaños 1500");
-        recinto1.setRecTipos(List.of(tipo1));
+        recinto1.setRecTipo(tipo1saved);
         recintoRepository.save(recinto1);
 
         Recinto recinto2 = new Recinto();
         recinto2.setRecDireccion("Los albinos 25");
-        recinto2.setRecTipos(List.of(tipo2, tipo3));
+        recinto2.setRecTipo(tipo2saved);
         recinto2.setRecNombre("Gimnasio alcalde Rail Neira");
         recinto2.setRecDescripcion("El mejor gimnasio de collipulli, disponible para diversos deportes");
         recintoRepository.save(recinto2);
@@ -63,7 +63,7 @@ public class Preload implements CommandLineRunner {
         recinto3.setRecDescripcion("Cancha de fútbol con iluminación nocturna");
         recinto3.setRecNombre("Estadio Municipal");
         recinto3.setRecDireccion("Avenida Deportiva 500");
-        recinto3.setRecTipos(List.of(tipo1));
+        recinto3.setRecTipo(tipo1saved);
         recintoRepository.save(recinto3);
 
 // Recinto 4
@@ -71,7 +71,7 @@ public class Preload implements CommandLineRunner {
         recinto4.setRecDescripcion("Piscina olímpica para natación y competiciones acuáticas");
         recinto4.setRecNombre("Complejo Acuático");
         recinto4.setRecDireccion("Calle del Agua 300");
-        recinto4.setRecTipos(List.of(tipo4));
+        recinto4.setRecTipo(tipo4saved);
         recintoRepository.save(recinto4);
 
 // Recinto 5
@@ -79,7 +79,7 @@ public class Preload implements CommandLineRunner {
         recinto5.setRecDescripcion("Canchas de tenis");
         recinto5.setRecNombre("Club de Tenis Los Pinos");
         recinto5.setRecDireccion("Avenida de las Raquetas 700");
-        recinto5.setRecTipos(List.of(tipo1));
+        recinto5.setRecTipo(tipo3saved);
         recintoRepository.save(recinto5);
     }
 
