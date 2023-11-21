@@ -1,4 +1,4 @@
-import ApiService from "@/services/api.service";
+import ApiService from "@/service/api.service";
 const url = "recintos";
 export const service = {
     getAll() {
