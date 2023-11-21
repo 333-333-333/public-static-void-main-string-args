@@ -50,6 +50,7 @@ public class Preload implements CommandLineRunner {
         recinto1.setRecDireccion("Los castaños 1500");
         recinto1.setRecPrecio(10000L);
         recinto1.setRecCapacidad(30L);
+        recinto1.setRecImagen("https://radiouniversal.cl/wp-content/uploads/2012/06/EstadioLoncoche.jpg");
         recinto1.setRecTipo(tipo1saved);
         recintoRepository.save(recinto1);
 
@@ -60,6 +61,7 @@ public class Preload implements CommandLineRunner {
         recinto2.setRecDescripcion("El mejor gimnasio de collipulli, disponible para diversos deportes");
         recinto2.setRecPrecio(20000L);
         recinto2.setRecCapacidad(100L);
+        recinto2.setRecImagen("https://radiouniversal.cl/wp-content/uploads/2012/06/EstadioLoncoche.jpg");
         recintoRepository.save(recinto2);
 
 // Recinto 3
@@ -70,6 +72,7 @@ public class Preload implements CommandLineRunner {
         recinto3.setRecPrecio(15000L);
         recinto3.setRecCapacidad(30L);
         recinto3.setRecTipo(tipo1saved);
+        recinto3.setRecImagen("https://www.munitucapel.cl/include/images/news/gallery/171/_000000171_3f6ed44826_Tucapel.jpg");
         recintoRepository.save(recinto3);
 
 // Recinto 4
@@ -79,6 +82,7 @@ public class Preload implements CommandLineRunner {
         recinto4.setRecDireccion("Calle del Agua 300");
         recinto4.setRecPrecio(30000L);
         recinto4.setRecCapacidad(20L);
+        recinto4.setRecImagen("https://i0.wp.com/www.aqualab.com.pe/wp-content/uploads/2015/05/Piscina-olimpica-San-Borja-03.jpg");
         recinto4.setRecTipo(tipo4saved);
         recintoRepository.save(recinto4);
 
@@ -89,6 +93,7 @@ public class Preload implements CommandLineRunner {
         recinto5.setRecDireccion("Avenida de las Raquetas 700");
         recinto5.setRecPrecio(10000L);
         recinto5.setRecCapacidad(8L);
+        recinto5.setRecImagen("https://www.tennisworldes.com/imge/1806/medidas-oficiales-de-las-canchas-de-tenis.webp");
         recinto5.setRecTipo(tipo3saved);
         recintoRepository.save(recinto5);
     }
