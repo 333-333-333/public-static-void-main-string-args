@@ -16,5 +16,11 @@ public class Tipo {
     private Long tipId;
     private String tipNombre;
 
+    public String getTipNombre() {
+        return tipNombre;
+    }
 
+    public void setTipNombre(String tipNombre) {
+        this.tipNombre = tipNombre;
+    }
 }
