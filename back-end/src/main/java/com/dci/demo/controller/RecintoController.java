@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/recintos")
+@RequestMapping("/recintos/")
+@CrossOrigin(origins = "*")
 public class RecintoController {
 
 
@@ -18,7 +19,7 @@ public class RecintoController {
         this.recintoService = recintoService;
     }
 
-    @PostMapping("/recintos")
+    @PostMapping("")
     public ResponseEntity<?> crearRecintoControlle(@RequestBody Recinto recinto){
         try {
             Recinto recintoCreado = recintoService.crearRecinto(recinto);
@@ -28,7 +29,7 @@ public class RecintoController {
         }
     }
 
-    @GetMapping("/recintos")
+    @GetMapping("")
     public ResponseEntity<?> verTodosLosRecintos(){
         try {
             List<Recinto> recintos = recintoService.obtenerTodosLosRecintos();
@@ -38,7 +39,7 @@ public class RecintoController {
         }
     }
 
-    @GetMapping("/recintos/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<?> obtenerRecintoPorId(@PathVariable Long id){
         try {
             Recinto recinto = recintoService.obtenerRecintoPorId(id);

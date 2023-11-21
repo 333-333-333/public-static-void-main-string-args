@@ -1,59 +1,29 @@
 package com.dci.demo.domain;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 public class Recinto {
 
 
     @Id
     @GeneratedValue
     private Long recId;
+    private Long recCapacidad;
+    private Long recPrecio;
     private String recNombre;
     private String recDireccion;
     private String recDescripcion;
-    @OneToMany
-    private List<Tipo> recTipos;
+    private String recImagen;
+    @ManyToOne
+    @JoinColumn(name = "tip_Id")
+    private Tipo recTipo;
 
-    public Long getRecId() {
-        return recId;
-    }
 
-    public void setRecId(Long recId) {
-        this.recId = recId;
-    }
-
-    public String getRecNombre() {
-        return recNombre;
-    }
-
-    public void setRecNombre(String recNombre) {
-        this.recNombre = recNombre;
-    }
-
-    public String getRecDireccion() {
-        return recDireccion;
-    }
-
-    public void setRecDireccion(String recDireccion) {
-        this.recDireccion = recDireccion;
-    }
-
-    public String getRecDescripcion() {
-        return recDescripcion;
-    }
-
-    public void setRecDescripcion(String recDescripcion) {
-        this.recDescripcion = recDescripcion;
-    }
-
-    public List<Tipo> getRecTipos() {
-        return recTipos;
-    }
-
-    public void setRecTipos(List<Tipo> recTipos) {
-        this.recTipos = recTipos;
-    }
 }

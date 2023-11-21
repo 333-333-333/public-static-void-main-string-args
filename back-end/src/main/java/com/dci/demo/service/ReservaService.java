@@ -2,6 +2,7 @@ package com.dci.demo.service;
 
 import com.dci.demo.domain.Reserva;
 import com.dci.demo.repository.ReservaRepository;
+import com.dci.demo.util.Validador;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +18,9 @@ public class ReservaService {
     }
 
     public Reserva crearReserva(Reserva reserva){
+        if (!Validador.validarReserva(reserva)) {
+
+        }
         return reservaRepository.save(reserva);
     }
 
