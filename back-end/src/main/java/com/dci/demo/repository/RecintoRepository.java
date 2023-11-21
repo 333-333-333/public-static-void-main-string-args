@@ -9,10 +9,10 @@ import java.util.List;
 
 
 @Repository
-public interface RecintoRepository extends JpaRepository<Long, Recinto> {
+public interface RecintoRepository extends JpaRepository<Recinto, Long> {
 
 
-    List<Recinto> findByRecTipos(Long tipId);
+    //List<Recinto> findByRecTipo(Long tipId);
 
 
 }
