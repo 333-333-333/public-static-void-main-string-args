@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/recintos/")
+@CrossOrigin(origins = "*")
 public class RecintoController {
 
 
