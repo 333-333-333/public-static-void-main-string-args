@@ -12,7 +12,7 @@ import java.util.List;
 public interface RecintoRepository extends JpaRepository<Recinto, Long> {
 
 
-    List<Recinto> findByRecTipos(Long tipId);
+    //List<Recinto> findByRecTipo(Long tipId);
 
 
 }

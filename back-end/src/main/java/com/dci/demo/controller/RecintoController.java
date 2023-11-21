@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping("/recintos")
 public class RecintoController {
 
     private RecintoService recintoService;
@@ -18,9 +19,9 @@ public class RecintoController {
 
     /*
     todo el controlador debe tener la ruta /recintos
-    get all ruta vacía -> /recintos/
-    get por id -> /recintos/{id}
-    create -> /recintos/ (post en vez de get)
+        get all ruta vacía -> /recintos/
+        get por id -> /recintos/{id}
+        create -> /recintos/ (post en vez de get)
     */
 
     @PostMapping
@@ -28,7 +29,7 @@ public class RecintoController {
         return recintoService.crearRecinto(recinto);
     }
 
-    @GetMapping
+    @GetMapping("/")
     public List<Recinto> verTodosLosRecintos(){
         return recintoService.obtenerTodosLosRecintos();
     }
