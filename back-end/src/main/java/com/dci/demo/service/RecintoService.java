@@ -18,6 +18,7 @@ public class RecintoService {
         this.recintoRepository = recintoRepository;
     }
 
+    // TODO
     public Recinto crearRecinto(Recinto recinto) {
         return recintoRepository.save(recinto);
     }
@@ -36,7 +37,6 @@ public class RecintoService {
         if (id < 0) {
             throw new WrongIdException();
         }
-
 
         return recintoRepository.findById(id).orElse(null);
     }
