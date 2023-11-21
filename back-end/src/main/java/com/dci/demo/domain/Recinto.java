@@ -15,9 +15,12 @@ public class Recinto {
     @Id
     @GeneratedValue
     private Long recId;
+    private Long recCapacidad;
+    private Long recPrecio;
     private String recNombre;
     private String recDireccion;
     private String recDescripcion;
+    private String recImagen;
     @ManyToOne
     @JoinColumn(name = "tip_Id")
     private Tipo recTipo;
