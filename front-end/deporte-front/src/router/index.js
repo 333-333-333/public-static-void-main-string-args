@@ -1,10 +1,18 @@
 // Composables
-import { createRouter, createWebHistory } from 'vue-router'
+import {
+  createRouter,
+  createWebHistory
+} from 'vue-router'
 
-const routes = [
-  {
+const routes = [{
     path: '/',
     component: () => import('@/views/Inicio.vue'),
+  },
+  {
+    path: '/detalle-recinto/:id',
+    name: 'detalle-recinto',
+    component: () => import('../views/DetalleRecinto.vue'),
+
   },
 ]
 
