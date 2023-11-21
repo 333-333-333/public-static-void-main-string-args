@@ -15,7 +15,7 @@
             <div class="card-body">
               <h5 class="card-title">{{ recinto.recNombre }}</h5>
               <p class="card-text">Capacidad: {{ recinto.recCapacidad }}</p>
-              <p class="card-text">Tipo: {{ recinto.recTipo }}</p>
+              <p class="card-text">Tipo: {{ recinto.recTipo.tipNombre }}</p>
               <p class="card-text">Precio por hora: ${{ recinto.recPrecio }}</p>
             </div>
           </div>
@@ -43,7 +43,6 @@ export default {
   },
   methods: {
     loadRecintos() {
-      console.log("HOLAAA")
       recintoService.getAll().then((response) => {
         this.recintos = response.data;
         this.recintosFiltrados = response.data;
