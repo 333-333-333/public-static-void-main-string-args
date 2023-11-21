@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class TipoService {
 
+
     private final TipoRepository tipoRepository;
 
     public TipoService(TipoRepository tipoRepository){
@@ -16,4 +17,6 @@ public class TipoService {
     public Tipo crearTipo(Tipo tipo){
         return tipoRepository.save(tipo);
     }
+
+
 }

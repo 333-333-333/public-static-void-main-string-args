@@ -1,8 +1,8 @@
 package com.dci.demo.controller;
 
-
 import com.dci.demo.domain.Recinto;
 import com.dci.demo.service.RecintoService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -11,31 +11,42 @@ import java.util.List;
 @RequestMapping("/recintos")
 public class RecintoController {
 
+
     private RecintoService recintoService;
 
     public RecintoController(RecintoService recintoService){
         this.recintoService = recintoService;
     }
 
-    /*
-    todo el controlador debe tener la ruta /recintos
-        get all ruta vacía -> /recintos/
-        get por id -> /recintos/{id}
-        create -> /recintos/ (post en vez de get)
-    */
-
-    @PostMapping
-    public Recinto crearRecintoControlle(@RequestBody Recinto recinto){
-        return recintoService.crearRecinto(recinto);
+    @PostMapping("/recintos")
+    public ResponseEntity<?> crearRecintoControlle(@RequestBody Recinto recinto){
+        try {
+            Recinto recintoCreado = recintoService.crearRecinto(recinto);
+            return ResponseEntity.ok(recintoCreado);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
 
-    @GetMapping("/")
-    public List<Recinto> verTodosLosRecintos(){
-        return recintoService.obtenerTodosLosRecintos();
+    @GetMapping("/recintos")
+    public ResponseEntity<?> verTodosLosRecintos(){
+        try {
+            List<Recinto> recintos = recintoService.obtenerTodosLosRecintos();
+            return ResponseEntity.ok(recintos);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
-    @GetMapping("/{id}")
-    public Recinto obtenerRecintoPorId(@PathVariable Long id){
-       return recintoService.obtenerRecintoPorId(id);
+
+    @GetMapping("/recintos/{id}")
+    public ResponseEntity<?> obtenerRecintoPorId(@PathVariable Long id){
+        try {
+            Recinto recinto = recintoService.obtenerRecintoPorId(id);
+            return ResponseEntity.ok(recinto);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
     }
+
 
 }

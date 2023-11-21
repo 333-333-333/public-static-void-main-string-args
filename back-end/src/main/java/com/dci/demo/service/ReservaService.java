@@ -9,7 +9,9 @@ import java.util.List;
 @Service
 public class ReservaService {
 
+
     private ReservaRepository reservaRepository;
+
     public ReservaService (ReservaRepository reservaRepository){
         this.reservaRepository = reservaRepository;
     }
@@ -17,10 +19,14 @@ public class ReservaService {
     public Reserva crearReserva(Reserva reserva){
         return reservaRepository.save(reserva);
     }
+
     public Reserva verReservaPorId(Long id){
         return reservaRepository.findById(id).orElse(null);
     }
+
     public List<Reserva> obtenerTodasLasReservas(){
         return reservaRepository.findAll();
     }
+
+
 }

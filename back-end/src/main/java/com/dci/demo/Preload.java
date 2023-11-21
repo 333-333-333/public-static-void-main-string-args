@@ -29,7 +29,7 @@ public class Preload implements CommandLineRunner {
         //Se crean tipos de recintos manualmente
         Tipo tipo1 = new Tipo();
         tipo1.setTipNombre("Multicancha");
-        tipoRepository.save(tipo1);
+        Tipo tipo1saved = tipoRepository.save(tipo1);
 
         Tipo tipo2 = new Tipo();
         tipo2.setTipNombre("Gimnasio");
