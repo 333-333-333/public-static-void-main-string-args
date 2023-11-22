@@ -1,6 +1,7 @@
 package com.dci.demo.service;
 
 import com.dci.demo.domain.Actividad;
+import com.dci.demo.domain.Recinto;
 import com.dci.demo.exception.EmptyRepositoryException;
 import com.dci.demo.exception.WrongIdException;
 import com.dci.demo.repository.ActividadRepository;
@@ -13,9 +14,10 @@ public class ActividadService {
 
 
     private ActividadRepository ActividadRepository;
-
-    public ActividadService(ActividadRepository ActividadRepository) {
+    public RecintoService RecintoService;
+    public ActividadService(ActividadRepository ActividadRepository, RecintoService RecintoService) {
         this.ActividadRepository = ActividadRepository;
+        this.RecintoService = RecintoService;
     }
 
     public List<Actividad> obtenerActividades() {
@@ -27,6 +29,8 @@ public class ActividadService {
             if (recId == null || recId < 0) {
                 throw new WrongIdException();
             }
+
+            Recinto recinto = RecintoService.obtenerRecintoPorId(recId);
 
             List<Actividad> actividades = ActividadRepository.findActividadesByRecinto(recId);
 

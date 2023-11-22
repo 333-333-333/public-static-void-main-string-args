@@ -2,11 +2,13 @@ package com.dci.demo.service;
 
 import com.dci.demo.domain.Recinto;
 import com.dci.demo.exception.EmptyRepositoryException;
+import com.dci.demo.exception.NoCoincidencesException;
 import com.dci.demo.exception.WrongIdException;
 import com.dci.demo.repository.RecintoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RecintoService {
@@ -38,7 +40,13 @@ public class RecintoService {
             throw new WrongIdException();
         }
 
-        return recintoRepository.findById(id).orElse(null);
+        Optional<Recinto> recinto = recintoRepository.findById(id);
+
+        if (recinto.isEmpty()) {
+            throw new NoCoincidencesException();
+        }
+
+        return recinto.get();
     }
 
 
