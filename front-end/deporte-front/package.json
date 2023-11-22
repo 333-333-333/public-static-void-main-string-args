@@ -16,7 +16,7 @@
     "vue": "^3.2.0",
     "vue-router": "^4.0.0",
     "vue-sidebar-menu": "^5.2.11",
-    "vuetify": "^3.0.0"
+    "vuetify": "^3.4.3"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.0.0",

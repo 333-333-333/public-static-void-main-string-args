@@ -11,6 +11,30 @@
         </template>
         <p>Precio por hora: ${{ recinto.recPrecio }}</p>
         <!-- Agrega más detalles según tus necesidades -->
+        <!--Calendario-->
+        <v-locale-provider locale="es">
+        <v-date-picker
+        title="Elija una fecha"
+        ref="picker"
+        v-model="date"
+        :picker-date.sync="pickerDate"
+        onchange="onchaged(event)"
+        ></v-date-picker>
+      </v-locale-provider>
+
+      {{ this.date.toLocaleDateString('es-CL') }} <br>
+      <!--Hora?-->
+      <v-time></v-time>
+
+      <v-btn variant="tonal">
+        Caja vecina
+      </v-btn>
+      <v-btn variant="tonal">
+        Pago presencial
+      </v-btn>
+      <v-btn variant="tonal">
+        Pago online
+      </v-btn>
       </div>
     </div>
     <div v-else>
@@ -25,6 +49,8 @@ import recintoService from "@/service/recinto.service";
 export default {
   data() {
     return {
+      date: (new Date(Date.now() + ((new Date()).getTimezoneOffset() * 60000))), //era +, lol,
+      pickerDate:null,
       recinto: null,
       errorLoadingRecinto: false,
     };
