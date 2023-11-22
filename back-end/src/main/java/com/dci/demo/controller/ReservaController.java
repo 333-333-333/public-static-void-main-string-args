@@ -2,8 +2,11 @@ package com.dci.demo.controller;
 
 import com.dci.demo.domain.Reserva;
 import com.dci.demo.service.ReservaService;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
 import java.util.List;
 
 @RestController
@@ -25,4 +28,19 @@ public class ReservaController {
     public List<Reserva> verReservas(){
         return  reservaService.obtenerTodasLasReservas();
     }
+
+    // recibir de parametro un recinto, una fecha y q apartir de entregue los horarios disponibles.
+
+    /*@GetMapping("disponibles")
+    public ResponseEntity<?> obtenerHorariosDisponibles(
+            @RequestParam Long recId,
+            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha) {
+        try {
+            List<Date> horariosDisponibles = reservaService.obtenerHorariosDisponibles(recId, fecha);
+            return ResponseEntity.ok(horariosDisponibles);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }*/
+
 }
