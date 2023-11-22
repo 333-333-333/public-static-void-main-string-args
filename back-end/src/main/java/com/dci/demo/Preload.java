@@ -1,14 +1,12 @@
 package com.dci.demo;
 
-import com.dci.demo.domain.Actividad;
-import com.dci.demo.domain.Recinto;
-import com.dci.demo.domain.Tipo;
-import com.dci.demo.repository.ActividadRepository;
-import com.dci.demo.repository.RecintoRepository;
-import com.dci.demo.repository.TipoRepository;
+import com.dci.demo.domain.*;
+import com.dci.demo.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.sql.Date;
+import java.time.Instant;
 import java.util.Arrays;
 import java.util.List;
 
@@ -20,10 +18,16 @@ public class Preload implements CommandLineRunner {
 
     private final ActividadRepository actividadRepository;
 
-    public Preload (RecintoRepository recintoRepository, TipoRepository tipoRepository, ActividadRepository actividadRepository){
+    private final UsuarioRepository usuarioRepository;
+
+    private final ReservaRepository reservaRepository;
+
+    public Preload (ReservaRepository reservaRepository, RecintoRepository recintoRepository, TipoRepository tipoRepository, ActividadRepository actividadRepository, UsuarioRepository usuarioRepository){
         this.recintoRepository=recintoRepository;
         this.tipoRepository=tipoRepository;
         this.actividadRepository=actividadRepository;
+        this.usuarioRepository=usuarioRepository;
+        this.reservaRepository=reservaRepository;
     }
 
     public void run(String... args) throws Exception {
@@ -154,6 +158,57 @@ public class Preload implements CommandLineRunner {
         recinto5.setRecTipo(tipo3saved);
         recinto5.setRecActividades(Arrays.asList(actividad4, actividad8));
         recintoRepository.save(recinto5);
+
+        //Crear roles
+        Rol rol1 = new Rol();
+        rol1.setRolNombre("Administrador");
+
+        Rol rol2 = new Rol();
+        rol2.setRolNombre("Usuario");
+
+        Rol rol3 = new Rol();
+        rol3.setRolNombre("Encargado");
+
+
+        //Crear usuarios
+        Usuario usuario1 = new Usuario();
+        usuario1.setUsuNombre("Rail");
+        usuario1.setUsuApellidoPaterno("Neira");
+        usuario1.setUsuApellidoMaterno("Marivil");
+        usuario1.setUsuRut("12345678-9");
+        usuario1.setUsuRol(rol1);
+        usuarioRepository.save(usuario1);
+
+
+        Usuario usuario2 = new Usuario();
+        usuario2.setUsuNombre("Juan");
+        usuario2.setUsuApellidoPaterno("Perez");
+        usuario2.setUsuApellidoMaterno("Gonzalez");
+        usuario2.setUsuRut("12345678-9");
+        usuario2.setUsuRol(rol2);
+        usuarioRepository.save(usuario2);
+
+        Usuario usuario3 = new Usuario();
+        usuario3.setUsuNombre("Pedro");
+        usuario3.setUsuApellidoPaterno("Gonzalez");
+        usuario3.setUsuApellidoMaterno("Perez");
+        usuario3.setUsuRut("12345678-9");
+        usuario3.setUsuRol(rol3);
+        usuarioRepository.save(usuario3);
+
+
+
+
+        //Crear reservas
+        Reserva reserva1 = new Reserva();
+        reserva1.setResInicio(Date.from(Instant.ofEpochSecond(1700753215)));
+        reserva1.setResFin(Date.from(Instant.ofEpochSecond(1700760415)));
+        reserva1.setResRecinto(recinto1);
+        reserva1.setResUsuario(usuario2);
+        reserva1.setResActividad(actividad1);
+        reservaRepository.save(reserva1);
+
+
     }
 
 }
