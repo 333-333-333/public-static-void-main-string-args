@@ -105,7 +105,7 @@ export default {
   margin: 10px;
   width: 100%; /* Ocupa el 100% del ancho disponible */
   max-width: 700px; /* Establece un ancho máximo para las tarjetas */
-  border: 2px solid orange; /* Agrega un borde de 2px de grosor y color gris */
+  border:  rgb(254,188, 75) 2px solid; /* Agrega un borde de 2px de grosor y color gris */
   border-radius: 10px; 
 }
 

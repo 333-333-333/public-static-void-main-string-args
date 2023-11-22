@@ -1,8 +1,10 @@
 <template>
   <div class="sidebar">
-    <div class="logo-container">
-      <img src="../assets/logo_principal.png" alt="Logo" class="logo-img" />
-    </div>
+    <router-link to="/login">
+      <div class="logo-container">
+        <img src="../assets/logo_principal.png" alt="Logo" class="logo-img" />
+      </div>
+    </router-link>
     <h2 class="titulo">Selecciona un deporte</h2>
     <ul>
       <li :class="{ 'selected': deporteSeleccionado === '' }" @click="filtrarPorDeporte('')">Todos</li>

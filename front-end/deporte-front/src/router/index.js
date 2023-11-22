@@ -14,6 +14,12 @@ const routes = [{
     component: () => import('../views/DetalleRecinto.vue'),
 
   },
+  {
+    path: '/login/',
+    name: 'login',
+    component: () => import('../views/Login.vue'),
+
+  },
 ]
 
 const router = createRouter({

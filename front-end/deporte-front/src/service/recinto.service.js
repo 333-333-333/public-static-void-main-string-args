@@ -1,3 +1,4 @@
+import apiService from "@/service/api.service";
 import ApiService from "@/service/api.service";
 const url = "recintos";
 export const service = {
@@ -5,7 +6,7 @@ export const service = {
         return ApiService.get(url, { id: "" });
     },
     get(id) {
-        return id;
+        return apiService.get(url, { id: id });
     },
     create(params) {
         return ApiService.post(url, { params: params });
