@@ -13,16 +13,16 @@ import java.util.List;
 public class RecintoController {
 
 
-    private RecintoService recintoService;
+    private RecintoService RecintoService;
 
     public RecintoController(RecintoService recintoService){
-        this.recintoService = recintoService;
+        this.RecintoService = recintoService;
     }
 
     @PostMapping("")
-    public ResponseEntity<?> crearRecintoControlle(@RequestBody Recinto recinto){
+    public ResponseEntity<?> crearRecinto(@RequestBody Recinto recinto){
         try {
-            Recinto recintoCreado = recintoService.crearRecinto(recinto);
+            Recinto recintoCreado = RecintoService.crearRecinto(recinto);
             return ResponseEntity.ok(recintoCreado);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -30,9 +30,9 @@ public class RecintoController {
     }
 
     @GetMapping("")
-    public ResponseEntity<?> verTodosLosRecintos(){
+    public ResponseEntity<?> obtenerRecintos(){
         try {
-            List<Recinto> recintos = recintoService.obtenerTodosLosRecintos();
+            List<Recinto> recintos = RecintoService.obtenerTodosLosRecintos();
             return ResponseEntity.ok(recintos);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
@@ -42,7 +42,7 @@ public class RecintoController {
     @GetMapping("{id}")
     public ResponseEntity<?> obtenerRecintoPorId(@PathVariable Long id){
         try {
-            Recinto recinto = recintoService.obtenerRecintoPorId(id);
+            Recinto recinto = RecintoService.obtenerRecintoPorId(id);
             return ResponseEntity.ok(recinto);
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());

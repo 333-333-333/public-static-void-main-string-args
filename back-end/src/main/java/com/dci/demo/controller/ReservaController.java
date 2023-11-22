@@ -8,21 +8,33 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/reservas/")
+@CrossOrigin(origins = "*")
 public class ReservaController {
-    private ReservaService reservaService;
+
+    private ReservaService ReservaService;
+
     public ReservaController(ReservaService reservaService){
-        this.reservaService = reservaService;
+        this.ReservaService = reservaService;
     }
+
     @PostMapping
     public Reserva crearReserva(@RequestBody Reserva reserva){
-        return reservaService.crearReserva(reserva);
+        return ReservaService.crearReserva(reserva);
     }
+
     @GetMapping("{id}")
     public Reserva verReservaPorId(@PathVariable Long id){
-        return reservaService.verReservaPorId(id);
+        return ReservaService.verReservaPorId(id);
     }
+
     @GetMapping("admin")//?????
     public List<Reserva> verReservas(){
-        return  reservaService.obtenerTodasLasReservas();
+        return  ReservaService.obtenerTodasLasReservas();
     }
+
+    // Obtiene las reservas por resinto, y desde el dia y hora en cuestión en adelante.
+    //@GetMapping("{recId}/{resInicio}")
+
+
+
 }
