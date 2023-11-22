@@ -57,7 +57,7 @@ export default {
       if (deporte) {
         // Filtra los recintos por deporte
         this.recintosFiltrados = this.recintos.filter((recinto) =>
-          recinto.deportes.includes(deporte)
+          recinto.recActividades.map((element)=> element.actNombre).includes(deporte)
         );
       } else {
         // Muestra todos los recintos si no hay un deporte específico

@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import actividadService from "@/service/actividad.service"
+
 export default {
   data() {
     return {
@@ -28,6 +30,17 @@ export default {
       this.deporteSeleccionado = deporte;
       this.$emit("filtrar", deporte);
     },
+    loadActividades(){
+      actividadService.getAll().then((response) => {
+        console.log(response)
+        this.deportes = response.data.map((element) => {
+          return element.actNombre;
+        })
+      })
+    }
+  },
+  mounted() {
+    this.loadActividades();
   },
 };
 </script>
