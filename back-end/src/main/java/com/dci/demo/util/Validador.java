@@ -8,8 +8,7 @@ public class Validador {
         if (reserva == null) {
             return false;
         }
-        if (reserva.getResInicio() == null ||
-                reserva.getResFin() == null) {
+        if (reserva.getResInicio() == null || reserva.getResFin() == null) {
             return false;
         }
         if (!validarUsuario(reserva.getResUsuario())) {
@@ -28,20 +27,16 @@ public class Validador {
         if (usuario == null) {
             return false;
         }
-        if (usuario.getUsuNombre() == null ||
-                usuario.getUsuNombre().isEmpty()) {
+        if (usuario.getUsuNombre() == null || usuario.getUsuNombre().isEmpty()) {
             return false;
         }
-        if (usuario.getUsuApellidoPaterno() == null ||
-                usuario.getUsuApellidoPaterno().isEmpty()) {
+        if (usuario.getUsuApellidoPaterno() == null || usuario.getUsuApellidoPaterno().isEmpty()) {
             return false;
         }
-        if (usuario.getUsuApellidoMaterno() == null ||
-                usuario.getUsuApellidoMaterno().isEmpty()) {
+        if (usuario.getUsuApellidoMaterno() == null || usuario.getUsuApellidoMaterno().isEmpty()) {
             return false;
         }
-        if (!validarRol(usuario.getUsuRol())) {
-            return false;
+        if (!validarRol(usuario.getUsuRol())) {return false;
         }
         return true;
     }
@@ -61,12 +56,10 @@ public class Validador {
         if (actividad == null) {
             return false;
         }
-        if (actividad.getActNombre() == null ||
-                actividad.getActNombre().isEmpty()) {
+        if (actividad.getActNombre() == null || actividad.getActNombre().isEmpty()) {
             return false;
         }
-        if (actividad.getActDescripcion() == null ||
-                actividad.getActDescripcion().isEmpty()) {
+        if (actividad.getActDescripcion() == null || actividad.getActDescripcion().isEmpty()) {
             return false;
         }
         return true;
@@ -76,24 +69,19 @@ public class Validador {
         if (recinto == null) {
             return false;
         }
-        if (recinto.getRecNombre() == null ||
-                recinto.getRecNombre().isEmpty()) {
+        if (recinto.getRecNombre() == null || recinto.getRecNombre().isEmpty()) {
             return false;
         }
-        if (recinto.getRecDescripcion() == null ||
-                recinto.getRecDescripcion().isEmpty()) {
+        if (recinto.getRecDescripcion() == null || recinto.getRecDescripcion().isEmpty()) {
             return false;
         }
-        if (recinto.getRecDireccion() == null ||
-                recinto.getRecDireccion().isEmpty()) {
+        if (recinto.getRecDireccion() == null || recinto.getRecDireccion().isEmpty()) {
             return false;
         }
-        if (recinto.getRecCapacidad() == null ||
-                recinto.getRecCapacidad() <= 0) {
+        if (recinto.getRecCapacidad() == null || recinto.getRecCapacidad() <= 0) {
             return false;
         }
-        if (recinto.getRecPrecio() == null ||
-                recinto.getRecPrecio() <= 0) {
+        if (recinto.getRecPrecio() == null || recinto.getRecPrecio() <= 0) {
             return false;
         }
         if (!validarTipo(recinto.getRecTipo())) {
@@ -106,8 +94,7 @@ public class Validador {
         if (tipo == null) {
             return false;
         }
-        if (tipo.getTipNombre() == null ||
-                tipo.getTipNombre().isEmpty()) {
+        if (tipo.getTipNombre() == null || tipo.getTipNombre().isEmpty()) {
             return false;
         }
         return true;
