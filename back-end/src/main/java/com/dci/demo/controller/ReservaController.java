@@ -2,8 +2,10 @@ package com.dci.demo.controller;
 
 import com.dci.demo.domain.Reserva;
 import com.dci.demo.service.ReservaService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -11,10 +13,11 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class ReservaController {
 
+
     private ReservaService ReservaService;
 
-    public ReservaController(ReservaService reservaService){
-        this.ReservaService = reservaService;
+    public ReservaController(ReservaService ReservaService){
+        this.ReservaService = ReservaService;
     }
 
     @PostMapping
@@ -32,9 +35,11 @@ public class ReservaController {
         return  ReservaService.obtenerTodasLasReservas();
     }
 
-    // Obtiene las reservas por resinto, y desde el dia y hora en cuestión en adelante.
-    //@GetMapping("{recId}/{resInicio}")
-
+    @GetMapping("{recId}/{resInicio}")
+    public ResponseEntity<?> verReservasPorRecintoYDesde(@PathVariable Long recId, @PathVariable Date resInicio) {
+        List<Reserva> reservas = ReservaService.obtenerReservasPorRecintoYDesde(recId, resInicio);
+        return ResponseEntity.ok(reservas);
+    }
 
 
 }
