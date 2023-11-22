@@ -1,10 +1,12 @@
 <template>
     <div class="login-container">
       <div class="login-image">
-        <!-- Aquí puedes poner tu imagen que ocupe el 60% del ancho de la pantalla y todo el largo -->
         <img src="../assets/img_welcome.jpeg" alt="Imagen de fondo" class="imagen" />
       </div>
       <div class="login-form">
+        <router-link to="/" class="back-button-container">
+          <img src="../assets/casa.png" alt="Botón Volver" class="back-button" />
+        </router-link>
         <img src="../assets/logo_principal.png" alt="Logo" class="logo" />
         <form @submit.prevent="login" class="form-container">
           <label for="email" class="form-label">Correo electrónico:</label>
@@ -19,24 +21,39 @@
     </div>
   </template>
   
-  <script>
-  export default {
-    data() {
-      return {
-        email: '',
-        password: '',
-      };
+ 
+<script>
+import userService from "@/mocks/api";
+
+export default {
+  data() {
+    return {
+      email: "", // Cambiado de username a email
+      password: "",
+    };
+  },
+  methods: {
+    async login() {
+      try {
+        const user = await userService.getUserByCredentials(this.email, this.password); // Cambiado de username a email
+        console.log("Inicio de sesión exitoso");
+        console.log("Usuario:", user);
+
+        // Redirigir al usuario según su rol
+        if (user.rol === 1) {
+          this.$router.push('/inicio-admin');
+        } else if (user.rol === 2) {
+          this.$router.push('/inicio-encargado');
+        }
+      } catch (error) {
+        console.error("Error al iniciar sesión:", error.error);
+        // Manejar el error, por ejemplo, mostrar un mensaje de error al usuario
+      }
     },
-    methods: {
-      login() {
-        // Aquí puedes realizar la lógica de autenticación
-        // Por ejemplo, puedes redirigir a Inicio.vue si la autenticación es exitosa
-        this.$router.push('/inicio');
-      },
-    },
-  };
-  </script>
-  
+  },
+};
+</script>
+
   <style scoped>
   
   
@@ -91,7 +108,7 @@
     padding: 10px;
     
     box-sizing: border-box;
-    border: 2px solid #0077B8;
+    border: 2px solid orange;
     border-radius: 5px;
     font-size: 18px; /* Tamaño de la letra ajustado */
     color: black; /* Color del texto ajustado */
@@ -104,7 +121,7 @@
   }
   
   .form-button {
-    background-color: rgb(254,188, 75);
+    background-color: #A4DC64;
     color: black;
     padding: 15px 30px;
     border: none;
@@ -122,5 +139,19 @@
   }
   
   
+
+  .back-button-container {
+  position: absolute;
+  top: 10px; /* Ajusta la distancia desde la parte superior según tu preferencia */
+  right: 10px; /* Ajusta la distancia desde la derecha según tu preferencia */
+  padding: 25px;
+}
+
+.back-button {
+  width: 45px;
+  height: 45px;
+  cursor: pointer;
+}
+
   </style>
   

@@ -20,6 +20,25 @@ const routes = [{
     component: () => import('../views/Login.vue'),
 
   },
+  {
+    path: '/inicio-encargado/',
+    name: 'inicio-encargado',
+    component: () => import('../views/InicioEncargado.vue'),
+    meta: {
+      requiresAuth: true,
+      role: 1
+    }
+  },
+  {
+    path: '/inicio-admin/',
+    name: 'inicio-admin',
+    component: () => import('../views/InicioAdministrador.vue'),
+    meta: {
+      requiresAuth: true,
+      role: 2
+    }
+  },
+
 ]
 
 const router = createRouter({
