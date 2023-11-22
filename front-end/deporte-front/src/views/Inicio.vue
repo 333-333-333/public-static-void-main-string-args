@@ -3,13 +3,9 @@
     <MenuLateral @filtrar="filtrarRecintos" />
     <div class="centros">
       <router-view></router-view>
-      <router-link 
-        v-for="recinto in recintosFiltrados" 
-        :key="recinto.recId"
-        :to="{ name: 'detalle-recinto', params: { id: recinto.recId } }" 
-        class="card mb-3" 
-        style="max-width: 700px; width: 100%; text-decoration: none;"
-      >
+      <router-link v-for="recinto in recintosFiltrados" :key="recinto.recId"
+        :to="{ name: 'detalle-recinto', params: { id: recinto.recId } }" class="card mb-3"
+        style="max-width: 700px; width: 100%; text-decoration: none;">
         <!-- El resto de tu código de tarjeta aquí -->
         <div class="row g-0">
           <div class="col-md-6">
@@ -49,15 +45,15 @@ export default {
         this.recintos = response.data;
         this.recintosFiltrados = response.data;
       })
-      .catch((error) => {
-        console.error("Error al obtener recintos:", error);
-      });
+        .catch((error) => {
+          console.error("Error al obtener recintos:", error);
+        });
     },
     filtrarRecintos(deporte) {
       if (deporte) {
         // Filtra los recintos por deporte
         this.recintosFiltrados = this.recintos.filter((recinto) =>
-          recinto.recActividades.map((element)=> element.actNombre).includes(deporte)
+          recinto.recActividades.map((element) => element.actNombre).includes(deporte)
         );
       } else {
         // Muestra todos los recintos si no hay un deporte específico
@@ -72,6 +68,46 @@ export default {
 <style scoped>
 /* Estilos para el contenedor principal */
 .contenedor {
+  display: flex;
+  flex-direction: column; /* Cambia la dirección del eje principal a vertical en pantallas pequeñas */
+  height: 100vh;
+  /* Ocupa el 100% del alto de la ventana */
+}
+
+/* Estilos para la barra lateral */
+.sidebar {
+  width: 100%; /* Ocupa el 100% del ancho del contenedor en pantallas pequeñas */
+  height: auto; /* Ajusta la altura automáticamente */
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* Estilos para el contenido principal */
+.centros {
+  width: 100%; /* Ocupa el 100% del ancho del contenedor en pantallas pequeñas */
+  padding: 20px;
+  margin-left: auto;
+}
+
+/* Estilos para la tarjeta */
+.card {
+  margin: 10px;
+  width: 100%; /* Ocupa el 100% del ancho disponible */
+  max-width: none; /* Elimina el ancho máximo para adaptarse a pantallas pequeñas */
+  border:  rgb(254,188, 75) 2px solid;
+  border-radius: 10px; 
+}
+
+/* Estilos para la imagen dentro de la tarjeta */
+.card img {
+  height: auto; /* Ajusta automáticamente la altura de la imagen */
+  width: 100%; /* Ocupa el 100% del ancho de la tarjeta */
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+@media screen and (min-width: 600px) {
+  .contenedor {
   display: flex;
   height: 100vh;
   /* Ocupa el 100% del alto de la ventana */
@@ -92,28 +128,39 @@ export default {
 
 /* Estilos para el contenido principal */
 .centros {
-  width: 70%; /* Ocupa el 60% del ancho del contenedor */
-  display: flex;
-  flex-wrap: wrap;
-  padding: 20px; /* Agrega espacio entre el menú y los recintos */
-  margin-right: 20%; /* Ajusta el margen izquierdo para dar espacio al menú fijo */
+  width: 70%;
+  /* Ocupa el 60% del ancho del contenedor */
+  /* display: flex; */
+  /* flex-wrap: wrap; */
+  padding: 20px;
+  /* Agrega espacio entre el menú y los recintos */
+  margin-right: 20%;
+  /* Ajusta el margen izquierdo para dar espacio al menú fijo */
   margin-left: 40%;
 }
 
 /* Estilos para la tarjeta */
 .card {
   margin: 10px;
-  width: 100%; /* Ocupa el 100% del ancho disponible */
-  max-width: 700px; /* Establece un ancho máximo para las tarjetas */
-  border:  rgb(254,188, 75) 2px solid; /* Agrega un borde de 2px de grosor y color gris */
-  border-radius: 10px; 
+  width: 100%;
+  /* Ocupa el 100% del ancho disponible */
+  max-width: 600px;
+  /* Establece un ancho máximo para las tarjetas */
+  border: rgb(254, 188, 75) 2px solid;
+  /* Agrega un borde de 2px de grosor y color gris */
+  border-radius: 10px;
 }
 
 /* Estilos para la imagen dentro de la tarjeta */
 .card img {
-  height: 210px; /* Ocupa el 100% de la altura disponible */
-  width: 100%; /* Ocupa el 100% del ancho de la columna */
-  object-fit: cover; /* Ajusta el tamaño de la imagen para cubrir la tarjeta */
-  border-radius: 10px; /* Añade bordes redondeados */
+  height: 210px;
+  /* Ocupa el 100% de la altura disponible */
+  width: 100%;
+  /* Ocupa el 100% del ancho de la columna */
+  object-fit: cover;
+  /* Ajusta el tamaño de la imagen para cubrir la tarjeta */
+  border-radius: 10px;
+  /* Añade bordes redondeados */
 }
-</style>
+
+}</style>
