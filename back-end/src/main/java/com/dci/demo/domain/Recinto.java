@@ -24,7 +24,7 @@ public class Recinto {
     @ManyToOne
     @JoinColumn(name = "tip_Id")
     private Tipo recTipo;
-    @OneToMany
+    @ManyToMany
     private List<Actividad> recActividades;
 
 
