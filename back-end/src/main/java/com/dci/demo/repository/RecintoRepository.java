@@ -14,7 +14,4 @@ import java.util.Optional;
 public interface RecintoRepository extends JpaRepository<Recinto, Long> {
 
 
-    Optional<Recinto> findByRecId();
-
-
 }

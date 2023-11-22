@@ -27,7 +27,7 @@ public class Usuario {
     private String usuApellidoMaterno;
     @OneToMany
     private List<Reserva> usuReservas;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Rol usuRol;
 
 

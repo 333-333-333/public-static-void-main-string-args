@@ -1,6 +1,7 @@
 package com.dci.demo.controller;
 
 import com.dci.demo.domain.Actividad;
+import com.dci.demo.domain.Recinto;
 import com.dci.demo.exception.WrongIdException;
 import com.dci.demo.repository.ActividadRepository;
 import com.dci.demo.service.ActividadService;
@@ -16,8 +17,6 @@ import java.util.List;
 @RequestMapping("/actividades/")
 @CrossOrigin(origins = "*")
 public class ActividadController {
-
-
     private ActividadService actividadService;
 
 
@@ -25,13 +24,23 @@ public class ActividadController {
         this.actividadService = actividadService;
     }
 
-    @GetMapping("")
+    @GetMapping("{recId}")
     public ResponseEntity<?> obtenerActividadesPorRecinto(Long recId){
         try {
             List<Actividad> actividades = actividadService.obtenerActividadesPorRecinto(recId);
             return ResponseEntity.ok(actividades);
         }
         catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
+    @GetMapping("")
+    public ResponseEntity<?> obtenerTodasLasActividades(){
+        try {
+            List<Actividad> actividades = actividadService.obtenerActividades();
+            return ResponseEntity.ok(actividades);
+        } catch (Exception e) {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
