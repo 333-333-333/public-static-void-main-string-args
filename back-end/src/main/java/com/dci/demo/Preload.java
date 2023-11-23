@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
 import java.sql.Date;
 import java.time.Instant;
 import java.util.Arrays;
-import java.util.List;
 
 @Component
 public class Preload implements CommandLineRunner {
@@ -176,8 +175,10 @@ public class Preload implements CommandLineRunner {
         usuario1.setUsuApellidoPaterno("Neira");
         usuario1.setUsuApellidoMaterno("Marivil");
         usuario1.setUsuRut("12345678-9");
+        usuario1.setUsuCorreo("rail.neira@collipulli.cl");
         usuario1.setUsuRol(rol1);
         usuarioRepository.save(usuario1);
+
 
 
         Usuario usuario2 = new Usuario();
@@ -186,6 +187,7 @@ public class Preload implements CommandLineRunner {
         usuario2.setUsuApellidoMaterno("Gonzalez");
         usuario2.setUsuRut("12345678-9");
         usuario2.setUsuRol(rol2);
+        usuario2.setUsuCorreo("JuanPerez12345@gmail.com");
         usuarioRepository.save(usuario2);
 
         Usuario usuario3 = new Usuario();
@@ -193,9 +195,28 @@ public class Preload implements CommandLineRunner {
         usuario3.setUsuApellidoPaterno("Gonzalez");
         usuario3.setUsuApellidoMaterno("Perez");
         usuario3.setUsuRut("12345678-9");
+        usuario3.setUsuCorreo("pedro.gonzalez@collipulli.cl");
         usuario3.setUsuRol(rol3);
         usuarioRepository.save(usuario3);
 
+
+        Usuario usuario4 = new Usuario();
+        usuario4.setUsuRol(rol1);
+        usuario4.setUsuCorreo("ninoska.diaz@collipulli.cl");
+        usuario4.setUsuNombre("Ninoska");
+        usuario4.setUsuApellidoPaterno("Diaz");
+        usuario4.setUsuApellidoMaterno("Lopez");
+        usuario4.setUsuRut("21896359-4");
+        usuarioRepository.save(usuario4);
+
+        Usuario usuario5 = new Usuario();
+        usuario5.setUsuNombre("Tomás");
+        usuario5.setUsuApellidoPaterno("Baeza");
+        usuario5.setUsuApellidoMaterno("Núñez");
+        usuario5.setUsuRut("20698711-3");
+        usuario5.setUsuCorreo("tomas.baeza@collipulli.cl");
+        usuario5.setUsuRol(rol3);
+        usuarioRepository.save(usuario5);
 
 
 
@@ -207,7 +228,6 @@ public class Preload implements CommandLineRunner {
         reserva1.setResUsuario(usuario2);
         reserva1.setResActividad(actividad1);
         reservaRepository.save(reserva1);
-
 
     }
 
