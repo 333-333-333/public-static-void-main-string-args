@@ -21,6 +21,10 @@ const routes = [{
 
   },
   {
+    path: '/inicio-encargado/',
+    redirect: 'inicio-encargado/1'
+  },
+  {
     path: '/inicio-encargado/:id',
     name: 'inicio-encargado',
     component: () => import('../views/InicioEncargado.vue'),

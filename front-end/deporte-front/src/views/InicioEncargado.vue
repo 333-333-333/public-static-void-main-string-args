@@ -4,7 +4,7 @@
 </script>
 <template>
     <div>
-      <h2>Bienvenido, Encargado</h2>
+      <h2 class="text-center">Bienvenido, Encargado</h2>
       <!-- Contenido específico para el inicio de sesión del encargado -->
     </div>
 
@@ -172,7 +172,7 @@ import reservaService from "@/service/reserva.service";
       this.horarios.forEach((element) => {
         element.disponible = true
       })
-      reservaService.getByRecinto(this.recinto.recId, this.date.toLocaleDateString('es-CL')).then(
+      reservaService.getByRecinto(this.recinto.recId, this.date.toLocaleDateString('es-CL')+"T"+"00:00:00").then(
         (response) => {
           this.reservas = response.data
           for (let reserva of response.data) {
