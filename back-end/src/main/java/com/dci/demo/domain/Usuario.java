@@ -25,9 +25,10 @@ public class Usuario {
     private String usuNombre;
     private String usuApellidoPaterno;
     private String usuApellidoMaterno;
+    private String usuCorreo;
     @OneToMany
     private List<Reserva> usuReservas;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.MERGE)
     private Rol usuRol;
 
 
