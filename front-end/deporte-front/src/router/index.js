@@ -51,6 +51,7 @@ const routes = [{
   {
     path: "/pago-online",
     name: "pago-online",
+    props: true,
     component: () => import('../views/PagoOnline.vue'),
   },
   {
@@ -61,6 +62,7 @@ const routes = [{
   {
     path: "/pago-municipalidad",
     name: "pago-municipalidad",
+    props: true,
     component: () => import('../views/PagoMunicipalidad.vue'),
   }
 
