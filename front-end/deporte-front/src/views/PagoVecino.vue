@@ -34,13 +34,15 @@
       </div>
 
       <!-- Botones con clases personalizadas -->
-      <button class="boton-cancelar">Salir</button>
-      <button class="boton-pagar">Pagar</button>
+      <button class="boton-cancelar" @click="salir">Salir</button>
+      <button class="boton-pagar" @click="pagar">Pagar</button>
     </div>
   </div>
 </template>
 
 <script>
+import router from "@/router";
+import reservaService from "@/service/reserva.service"
 export default {
   data() {
     return {
@@ -59,6 +61,18 @@ export default {
         total: 0,
       },
     };
+  },
+  methods: {
+    pagar(){
+      reservaService.create(this.reserva).then((_)=>{
+        this.$router.push("/detalle-recinto/"+this.reserva.resRecinto.recId);
+        alert("LISTO!")
+      });
+    },
+    salir(){
+      this.$router.push("/")  
+    }
+
   },
   mounted() {
     this.reserva = JSON.parse(this.$route.query.reserva);

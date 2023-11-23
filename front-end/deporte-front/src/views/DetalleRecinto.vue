@@ -96,7 +96,7 @@
                   <v-divider></v-divider>
 
                   <v-list class="mt-6">
-                    <v-list-item v-for="(item, i) in botones" :key="i" :value="item" color="primary"
+                    <v-list-item v-for="(item, i) in botones" :key="i" :value="item" color="primary" :disabled="!this.actividadSeleccionada || !this.reservaFinal.resInicio"
                       @click="irA(item.ruta)">
                       <template v-slot:prepend>
                         <v-avatar>
@@ -129,7 +129,7 @@ export default {
         resInicio: "",
         resFin: "",
         resUsuario: {
-          usuId: 99
+          usuId: 7
         },
         resRecinto: {
           recId: 0
@@ -188,10 +188,18 @@ export default {
     // Cargar detalles del recinto al montarse el componente
     let horarios = []
     for (let i = 0; i < 13; i++) {
-      horarios.push({
-        title: `${i + 8}:00`,
-        disponible: true
-      })
+      if (i < 2) {
+        horarios.push({
+          title: `0${i + 8}:00`,
+          disponible: true
+        })
+      }
+      else {
+        horarios.push({
+          title: `${i + 8}:00`,
+          disponible: true
+        })
+      }
     }
     this.horarios = horarios;
     this.loadRecintoDetails();
@@ -228,7 +236,9 @@ export default {
         (response) => {
           this.reservas = response.data
           for (let reserva of response.data) {
-            if (reserva.resInicio.split("T")[0] == this.date.toLocaleDateString('en-CA')) {
+            console.log(this.date.toLocaleDateString('es-CL'))
+            console.log(reserva.resInicio.split("T")[0])
+            if (reserva.resInicio.split("T")[0] == this.date.toLocaleDateString('es-CL')) {
               let hora = reserva.resInicio.split("T")[1].split(":")[0]
               this.horarios[hora - 8].disponible = false
             }
@@ -248,12 +258,17 @@ export default {
     },
     seleccionarHorario(horario) {
       this.detallesReserva[0].time = horario.title;
-      this.detallesReserva[1].time = (parseInt(horario.title.split(":")[0]) + 1).toString() + ":00"
+      let next = (parseInt(horario.title.split(":")[0]) + 1).toString()
+      if (next.length===1){
+        next = '0' + next;
+      }
+      this.detallesReserva[1].time = next + ":00"
+      console.log(this.detallesReserva[1].time)
       this.detallesReserva[2].time = "$ " + this.recinto.recPrecio;
 
       this.reservaFinal.total = this.recinto.recPrecio;
-      this.reservaFinal.resInicio = this.date.toLocaleDateString('es-CL') + "T" + horario.title;
-      this.reservaFinal.resFin = this.date.toLocaleDateString('es-CL') + "T" + this.detallesReserva[1].time;
+      this.reservaFinal.resInicio = this.date.toLocaleDateString('es-CL') + "T" + horario.title + ":00";
+      this.reservaFinal.resFin = this.date.toLocaleDateString('es-CL') + "T" + this.detallesReserva[1].time + ":00";
       this.reservaFinal.resRecinto.recId = this.recinto.recId;
 
 
