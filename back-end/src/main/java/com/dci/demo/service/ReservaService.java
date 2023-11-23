@@ -6,6 +6,7 @@ import com.dci.demo.util.Validador;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -39,7 +40,7 @@ public class ReservaService {
         return ReservaRepository.findReservasByRecinto(recId);
     }
 
-    public List<Reserva> obtenerReservasPorRecintoYDesde(Long recId, Date resInicio){
+    public List<Reserva> obtenerReservasPorRecintoYDesde(Long recId, LocalDateTime resInicio){
         return ReservaRepository.findReservasByRecintoAndInicio(recId, resInicio);
     }
 
