@@ -107,27 +107,27 @@ public class Preload implements CommandLineRunner {
         Tipo tipo4saved = tipoRepository.save(piscina);
 
 
-        Recinto multicancha = new Recinto();
-        multicancha.setRecDescripcion("Multicancha deportiva para realizar multiples deportes");
-        multicancha.setRecNombre("Recinto los abedules");
-        multicancha.setRecDireccion("Los castaños 1500");
-        multicancha.setRecPrecio(10000L);
-        multicancha.setRecCapacidad(30L);
-        multicancha.setRecImagen("https://radiouniversal.cl/wp-content/uploads/2012/06/EstadioLoncoche.jpg");
-        multicancha.setRecTipo(tipo1saved);
-        multicancha.setRecActividades(Arrays.asList(futbol, basketball, voleibol));
-        recintoRepository.save(multicancha);
+        Recinto multicancha_recinto = new Recinto();
+        multicancha_recinto.setRecDescripcion("Multicancha deportiva para realizar multiples deportes");
+        multicancha_recinto.setRecNombre("Recinto los abedules");
+        multicancha_recinto.setRecDireccion("Los castaños 1500");
+        multicancha_recinto.setRecPrecio(10000L);
+        multicancha_recinto.setRecCapacidad(30L);
+        multicancha_recinto.setRecImagen("https://radiouniversal.cl/wp-content/uploads/2012/06/EstadioLoncoche.jpg");
+        multicancha_recinto.setRecTipo(tipo1saved);
+        multicancha_recinto.setRecActividades(Arrays.asList(futbol, basketball, voleibol));
+        recintoRepository.save(multicancha_recinto);
 
-        Recinto gimnasio = new Recinto();
-        gimnasio.setRecDireccion("Los albinos 25");
-        gimnasio.setRecTipo(tipo2saved);
-        gimnasio.setRecNombre("Gimnasio alcalde Rail Neira");
-        gimnasio.setRecDescripcion("El mejor gimnasio de collipulli, disponible para diversos deportes");
-        gimnasio.setRecPrecio(20000L);
-        gimnasio.setRecCapacidad(100L);
-        gimnasio.setRecImagen("https://radiouniversal.cl/wp-content/uploads/2012/06/EstadioLoncoche.jpg");
-        gimnasio.setRecActividades(Arrays.asList(basketball, voleibol));
-        recintoRepository.save(gimnasio);
+        Recinto gimnasio_recinto = new Recinto();
+        gimnasio_recinto.setRecDireccion("Los albinos 25");
+        gimnasio_recinto.setRecTipo(tipo2saved);
+        gimnasio_recinto.setRecNombre("Gimnasio alcalde Rail Neira");
+        gimnasio_recinto.setRecDescripcion("El mejor gimnasio de collipulli, disponible para diversos deportes");
+        gimnasio_recinto.setRecPrecio(20000L);
+        gimnasio_recinto.setRecCapacidad(100L);
+        gimnasio_recinto.setRecImagen("https://radiouniversal.cl/wp-content/uploads/2012/06/EstadioLoncoche.jpg");
+        gimnasio_recinto.setRecActividades(Arrays.asList(basketball, voleibol));
+        recintoRepository.save(gimnasio_recinto);
 
 // Recinto 3
         Recinto cancha = new Recinto();
@@ -142,16 +142,16 @@ public class Preload implements CommandLineRunner {
         recintoRepository.save(cancha);
 
 // Recinto 4
-        Recinto piscina = new Recinto();
-        piscina.setRecDescripcion("Piscina olímpica para natación y competiciones acuáticas");
-        piscina.setRecNombre("Complejo Acuático");
-        piscina.setRecDireccion("Calle del Agua 300");
-        piscina.setRecPrecio(30000L);
-        piscina.setRecCapacidad(20L);
-        piscina.setRecImagen("https://i0.wp.com/www.aqualab.com.pe/wp-content/uploads/2015/05/Piscina-olimpica-San-Borja-03.jpg");
-        piscina.setRecTipo(tipo4saved);
-        piscina.setRecActividades(Arrays.asList(natacion, yoga, zumba));
-        recintoRepository.save(piscina);
+        Recinto piscina_recinto = new Recinto();
+        piscina_recinto.setRecDescripcion("Piscina olímpica para natación y competiciones acuáticas");
+        piscina_recinto.setRecNombre("Complejo Acuático");
+        piscina_recinto.setRecDireccion("Calle del Agua 300");
+        piscina_recinto.setRecPrecio(30000L);
+        piscina_recinto.setRecCapacidad(20L);
+        piscina_recinto.setRecImagen("https://i0.wp.com/www.aqualab.com.pe/wp-content/uploads/2015/05/Piscina-olimpica-San-Borja-03.jpg");
+        piscina_recinto.setRecTipo(tipo4saved);
+        piscina_recinto.setRecActividades(Arrays.asList(natacion, yoga, zumba));
+        recintoRepository.save(piscina_recinto);
 
 // Recinto 5
         Recinto cancha_tenis = new Recinto();
@@ -226,7 +226,7 @@ public class Preload implements CommandLineRunner {
         usuario5.setUsuRol(encargado);
         usuarioRepository.save(usuario5);
 
-        Usiario usuario6 = new Usuario();
+        Usuario usuario6 = new Usuario();
         usuario6.setUsuNombre("Jorge");
         usuario6.setUsuApellidoPaterno("Gonzalez");
         usuario6.setUsuApellidoMaterno("Perez");
@@ -239,7 +239,7 @@ public class Preload implements CommandLineRunner {
         Reserva reserva1 = new Reserva();
         reserva1.setResInicio(LocalDateTime.of(2023,11,23,10,0,0));
         reserva1.setResFin(LocalDateTime.of(2023,11,23,11,0,0));
-        reserva1.setResRecinto(multicancha);
+        reserva1.setResRecinto(multicancha_recinto);
         reserva1.setResUsuario(usuario2);
         reserva1.setResActividad(futbol);
         reservaRepository.save(reserva1);
@@ -248,7 +248,7 @@ public class Preload implements CommandLineRunner {
         Reserva reserva2 = new Reserva();
         reserva2.setResInicio(LocalDateTime.of(2023,11,23,11,0,0));
         reserva2.setResFin(LocalDateTime.of(2023,11,23,12,0,0));
-        reserva2.setResRecinto(multicancha);
+        reserva2.setResRecinto(multicancha_recinto);
         reserva2.setResUsuario(usuario2);
         reserva2.setResActividad(futbol);
         reservaRepository.save(reserva2);
@@ -256,7 +256,7 @@ public class Preload implements CommandLineRunner {
         Reserva reserva3 = new Reserva();
         reserva3.setResInicio(LocalDateTime.of(2023,11,23,12,0,0));
         reserva3.setResFin(LocalDateTime.of(2023,11,23,13,0,0));
-        reserva3.setResRecinto(piscina);
+        reserva3.setResRecinto(piscina_recinto);
         reserva3.setResUsuario(usuario6);
         reserva3.setResActividad(natacion);
         reservaRepository.save(reserva3);
@@ -264,7 +264,7 @@ public class Preload implements CommandLineRunner {
         Reserva reserva4 = new Reserva();
         reserva4.setResInicio(LocalDateTime.of(2023,11,24,13,0,0));
         reserva4.setResFin(LocalDateTime.of(2023,11,24,14,0,0));
-        reserva4.setResRecinto(piscina);
+        reserva4.setResRecinto(piscina_recinto);
         reserva4.setResUsuario(usuario6);
         reserva4.setResActividad(natacion);
         reservaRepository.save(reserva4);
