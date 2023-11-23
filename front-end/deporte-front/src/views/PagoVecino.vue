@@ -37,9 +37,17 @@
   </template>
   
   <script>
-  export default {
-    // Tu lógica del componente
-  };
+export default {
+    data() {
+        return {
+            reserva: null
+        }
+    },
+    mounted() {
+        this.reserva = JSON.parse(this.$route.query.reserva)
+        console.log(this.reserva.total)
+    }
+}
   </script>
   
   <style scoped>
