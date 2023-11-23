@@ -5,7 +5,7 @@
         <img src="../assets/logo_principal.png" alt="Logo" class="logo-img" />
       </div>
     </router-link>
-    <h2 class="titulo">Selecciona un deporte</h2>
+    <h2 class="titulo">Selecciona una actividad</h2>
     <ul>
       <li :class="{ 'selected': deporteSeleccionado === '' }" @click="filtrarPorDeporte('')">Todos</li>
       <li v-for="deporte in deportes" :key="deporte" :class="{ 'selected': deporteSeleccionado === deporte }" @click="filtrarPorDeporte(deporte)">

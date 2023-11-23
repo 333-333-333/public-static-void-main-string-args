@@ -3,15 +3,11 @@
 import MenuEncargado from '@/components/MenuEncargado.vue';
 </script>
 <template>
+  <div class="todo">
   <v-sheet color="#EEEEEE">
-    <div>
-      <h2 class="text-center">Bienvenido, Encargado</h2>
-      <!-- Contenido específico para el inicio de sesión del encargado -->
-    </div>
     <v-container v-if="recinto" fluid>
       <v-row no-gutters>
         <v-col cols="12" md="4">
-
           <v-card class="mx-auto" max-width="400">
             <MenuEncargado ref="menuEncargado" @date-change="(date) => alertMe(date)"></MenuEncargado>
           </v-card>
@@ -19,7 +15,7 @@ import MenuEncargado from '@/components/MenuEncargado.vue';
 
         <v-col cols="12" md="4">
           <v-card class="mx-auto" max-width="600">
-            <v-toolbar color="secondary">
+            <v-toolbar color="#FEBC4B">
 
               <v-btn variant="text" icon="mdi-magnify" class="ma-3"></v-btn>
               <v-toolbar-title>Horarios disponibles</v-toolbar-title>
@@ -37,10 +33,6 @@ import MenuEncargado from '@/components/MenuEncargado.vue';
                   </v-avatar>
                 </template>
 
-                <template v-slot:append>
-                  <v-btn v-if="horario.disponible" color="green" icon="mdi-arrow-right-circle" variant="text"></v-btn>
-                  <v-btn v-else color="grey-lighten-1" icon="mdi-information" variant="text"></v-btn>
-                </template>
               </v-list-item>
 
             </v-list>
@@ -83,6 +75,7 @@ import MenuEncargado from '@/components/MenuEncargado.vue';
       </v-row>
     </v-container>
   </v-sheet>
+</div>
 </template>
 
 <script>
@@ -90,6 +83,7 @@ import MenuEncargado from '@/components/MenuEncargado.vue';
 import recintoService from "@/service/recinto.service";
 import reservaService from "@/service/reserva.service";
 import descargaService from "@/service/descarga.service"
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -150,9 +144,42 @@ export default {
     this.loadRecintoDetails();
   },
   methods: {
-    Imprimir(){
+    Imprimir() {
       console.log("HOLAAA");
-      descargaService.generar();
+      // descargaService.generar(this.$route.params.id, this.date.toLocaleDateString('es-CL') + "T" + "00:00:00").then(response => {
+      //   console.log(response);
+      //   const downloadUrl = window.URL.createObjectURL(new Blob([response.data]));
+      //   this.invoicePDF = downloadUrl
+      //   this.downloadFile()
+      // })
+      const url = `http://localhost:8080/pdf/${this.$route.params.id}/${this.date.toLocaleDateString('es-CL') + 'T' + '00:00:00'}`;
+
+      // Make the GET request to the Spring Boot service
+      axios.get(url, { responseType: 'blob' }) // 'blob' responseType is important for binary data
+        .then(response => {
+          // Create a Blob from the PDF data
+          const blob = new Blob([response.data], { type: 'application/pdf' });
+
+          // Create a link element, set the href to the Blob, and trigger a click to download the file
+          const link = document.createElement('a');
+          link.href = window.URL.createObjectURL(blob);
+          link.download = 'your-pdf-filename.pdf';
+          link.click();
+
+          // Clean up
+          window.URL.revokeObjectURL(link.href);
+        })
+        .catch(error => {
+          console.error('Error downloading PDF:', error);
+        });
+    },
+    downloadFile() {
+      const link = document.createElement('a');
+      link.href = this.invoicePDF;
+      link.setAttribute('download', 'file.pdf');
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
     },
     alertMe(date) {
       this.date = date;
@@ -203,5 +230,8 @@ export default {
 </script>
 
 <style scoped>
-/* Estilos específicos si es necesario */
+.todo {
+  background-color: #EEEEEE;
+  height: 100vh;
+}
 </style>

@@ -57,14 +57,10 @@ export default {
     margin-top: 50px;
   }
 
-  #some-text{
-
-  }
-
   .menu-encargado{
     /*background-color: lightgray;*/
     width: 30%;
-    height: 100vh;
+    /* height: 100vh; */
     padding: 20px;
     background-color: #A4DC64;
     box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
