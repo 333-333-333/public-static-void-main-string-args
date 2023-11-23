@@ -1,5 +1,5 @@
 <template>
-  <v-sheet class="red lighten-3">
+  <v-sheet class="d-flex" color="#A4DC64">
     <v-container v-if="recinto" fluid>
       <v-row no-gutters>
         <v-col cols="12" md="4">
@@ -25,8 +25,7 @@
           <v-card class="mx-auto" max-width="400">
             <v-locale-provider locale="es">
               <v-date-picker title="Elija una fecha" ref="picker" v-model="date" :picker-date.sync="pickerDate"
-        :min="nowDate"
-                @update:modelValue="seleccionarFecha"></v-date-picker>
+                :min="nowDate" @update:modelValue="seleccionarFecha"></v-date-picker>
             </v-locale-provider>
           </v-card>
         </v-col>
@@ -77,7 +76,7 @@
 
                 <v-card-text>
                   <div class="font-weight-bold ms-1 mb-2">
-                    {{this.date.toLocaleDateString('es-CL')}}
+                    {{ this.date.toLocaleDateString('es-CL') }}
                   </div>
 
                   <v-timeline density="compact" align="start">
@@ -95,7 +94,7 @@
                   <v-divider></v-divider>
 
                   <v-list class="mt-6">
-                    <v-list-item v-for="(item, i) in botones" :key="i" :value="item" color="primary">
+                    <v-list-item v-for="(item, i) in botones" :key="i" :value="item" color="primary" @click="irA(item.ruta)">
                       <template v-slot:prepend>
                         <v-avatar>
                           <v-img :src="item.img"></v-img>
@@ -122,7 +121,7 @@ import reservaService from "@/service/reserva.service";
 export default {
   data() {
     return {
-      nowDate: new Date().toISOString().slice(0,10),
+      nowDate: new Date().toISOString().slice(0, 10),
       date: (new Date(Date.now() + ((new Date()).getTimezoneOffset() * 60000))), //era +, lol,
       pickerDate: null,
       recinto: null,
@@ -132,15 +131,18 @@ export default {
       botones: [{
         title: 'Pago online',
         value: 1,
-        img: "https://surempresa.com/37-large_default/webpay-plus.jpg"
+        img: "https://surempresa.com/37-large_default/webpay-plus.jpg",
+        ruta: "pago-online"
       }, {
         title: 'Pago por caja vecina',
         value: 2,
-        img: "https://seeklogo.com/images/C/caja-vecina-logo-EE21EC6A69-seeklogo.com.png"
+        img: "https://seeklogo.com/images/C/caja-vecina-logo-EE21EC6A69-seeklogo.com.png",
+        ruta: "pago-vecino"
       }, {
         title: 'Pago en municipalidad',
         value: 3,
-        img: "https://cdn-icons-png.flaticon.com/512/761/761603.png"
+        img: "https://cdn-icons-png.flaticon.com/512/761/761603.png",
+        ruta: "pago-municipalidad"
       }],
       messages: [
         {
@@ -203,7 +205,7 @@ export default {
       this.horarios.forEach((element) => {
         element.disponible = true
       })
-      reservaService.getByRecinto(this.recinto.recId, this.date.toLocaleDateString('es-CL')).then(
+      reservaService.getByRecinto(this.recinto.recId, this.date.toLocaleDateString('es-CL')+"T"+"00:00:00").then(
         (response) => {
           this.reservas = response.data
           for (let reserva of response.data) {
@@ -213,6 +215,9 @@ export default {
             }
           }
         })
+    },
+    irA(ruta){
+      this.$router.push("/"+ruta)
     }
   },
 };

@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -37,10 +38,9 @@ public class ReservaController {
     }
 
     @GetMapping("{recId}/{resInicio}")
-    public ResponseEntity<?> verReservasPorRecintoYDesde(@PathVariable Long recId, @PathVariable @DateTimeFormat(pattern = "dd-MM-yyyy") Date resInicio) {
+    public ResponseEntity<?> verReservasPorRecintoYDesde(@PathVariable Long recId, @PathVariable @DateTimeFormat(pattern = "dd-MM-yyyy'T'HH:mm:ss") LocalDateTime resInicio) {
         List<Reserva> reservas = ReservaService.obtenerReservasPorRecintoYDesde(recId, resInicio);
         return ResponseEntity.ok(reservas);
     }
-
 
 }

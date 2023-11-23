@@ -3,8 +3,10 @@ package com.dci.demo.service;
 import com.dci.demo.domain.Reserva;
 import com.dci.demo.repository.ReservaRepository;
 import com.dci.demo.util.Validador;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -33,12 +35,14 @@ public class ReservaService {
         return ReservaRepository.findAll();
     }
 
+
     public List<Reserva> obtenerReservasPorRecinto(Long recId){
         return ReservaRepository.findReservasByRecinto(recId);
     }
 
-    public List<Reserva> obtenerReservasPorRecintoYDesde(Long recId, Date resInicio){
+    public List<Reserva> obtenerReservasPorRecintoYDesde(Long recId, LocalDateTime resInicio){
         return ReservaRepository.findReservasByRecintoAndInicio(recId, resInicio);
     }
+
 
 }

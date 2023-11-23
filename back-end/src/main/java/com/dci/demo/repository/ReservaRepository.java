@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -17,7 +19,7 @@ public interface ReservaRepository extends JpaRepository<Reserva, Long> {
 
     // Reservas por recinto y desde el dia y hora en cuestión en adelante.
     @Query("SELECT r FROM Reserva r WHERE r.resRecinto.recId = :rec_Id AND r.resInicio >= :res_Inicio")
-    List<Reserva> findReservasByRecintoAndInicio(@Param("rec_Id") Long recId, @Param("res_Inicio") Date resInicio);
+    List<Reserva> findReservasByRecintoAndInicio(@Param("rec_Id") Long recId, @Param("res_Inicio") LocalDateTime resInicio);
 
 
 }
