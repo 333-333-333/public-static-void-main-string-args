@@ -18,7 +18,7 @@ export const service = {
         return ApiService.delete(url, { id: id });
     },
     getByRecinto(id, from){
-        return ApiService.get(url+`/${id}/${from}`)
+        return ApiService.get(url, { id: `${id}/${from}`})
     }
 };
 export default service;
