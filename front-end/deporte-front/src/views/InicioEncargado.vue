@@ -4,7 +4,7 @@
 </script>
 <template>
     <div>
-      <h2>Bienvenido, Encargado</h2>
+      <h2 class="text-center">Bienvenido, Encargado</h2>
       <!-- Contenido específico para el inicio de sesión del encargado -->
     </div>
 
