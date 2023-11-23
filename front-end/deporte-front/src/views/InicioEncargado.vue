@@ -1,37 +1,17 @@
 <!-- InicioEncargado.vue -->
 <script setup>
-  import MenuEncargado from '@/components/MenuEncargado.vue';
+import MenuEncargado from '@/components/MenuEncargado.vue';
 </script>
 <template>
+  <v-sheet color="#EEEEEE">
     <div>
       <h2 class="text-center">Bienvenido, Encargado</h2>
       <!-- Contenido específico para el inicio de sesión del encargado -->
     </div>
-
-
-    <v-sheet class="red lighten-3">
     <v-container v-if="recinto" fluid>
       <v-row no-gutters>
         <v-col cols="12" md="4">
-          <!--<v-card class="mx-auto" max-width="400">
-            <v-img class="align-end text-white" height="200" :src="recinto.recImagen" cover>
-              <v-card-title>{{ recinto.recNombre }}</v-card-title>
-            </v-img>
 
-            <v-card-subtitle class="pt-4">
-              {{ recinto.recTipo.tipNombre }}
-            </v-card-subtitle>
-
-            <v-card-text>
-              <div>
-                <p>Capacidad: {{ recinto.recCapacidad }}</p>
-              </div>
-              <div>
-                Precio por hora: ${{ recinto.recPrecio }}
-              </div>
-            </v-card-text>
-
-          </v-card>-->
           <v-card class="mx-auto" max-width="400">
             <MenuEncargado ref="menuEncargado" @date-change="(date) => alertMe(date)"></MenuEncargado>
           </v-card>
@@ -66,26 +46,55 @@
             </v-list>
           </v-card>
         </v-col>
+        <v-col>
+          <v-card class="mx-auto" max-width="400">
+            <v-img class="align-end text-white" height="200" :src="recinto.recImagen" cover>
+              <v-card-title>{{ recinto.recNombre }}</v-card-title>
+            </v-img>
+
+            <v-card-subtitle class="pt-4">
+              {{ recinto.recTipo.tipNombre }}
+            </v-card-subtitle>
+
+            <v-card-text>
+              <div>
+                <p>Capacidad: {{ recinto.recCapacidad }}</p>
+              </div>
+              <div>
+                Precio por hora: ${{ recinto.recPrecio }}
+              </div>
+            </v-card-text>
+
+            <v-divider></v-divider>
+
+            <v-list>
+              <v-list-item color="primary" @click="Imprimir">
+                <template v-slot:prepend>
+                  <v-avatar>
+                    <v-icon>mdi-download</v-icon>
+                  </v-avatar>
+                </template>
+                <v-list-item-title>Descargar</v-list-item-title>
+              </v-list-item>
+            </v-list>
+          </v-card>
+        </v-col>
 
       </v-row>
     </v-container>
   </v-sheet>
+</template>
 
-
-
-
-
-  </template>
-
-  <script>
+<script>
 
 import recintoService from "@/service/recinto.service";
 import reservaService from "@/service/reserva.service";
-  export default {
-    data(){
-      return{
-        date:null,
-        pickerDate: null,
+import descargaService from "@/service/descarga.service"
+export default {
+  data() {
+    return {
+      date: (new Date(Date.now() + ((new Date()).getTimezoneOffset() * 60000))), //era +, lol,
+      pickerDate: null,
       recinto: null,
       errorLoadingRecinto: false,
       reservas: [],
@@ -125,10 +134,10 @@ import reservaService from "@/service/reserva.service";
       ],
       periodos: ['09:00 AM - 12:00 PM', '01:00 PM - 04:00 PM', '05:00 PM - 08:00 PM'],
       periodoSeleccionado: null
-      }
+    }
 
-    },
-    mounted() {
+  },
+  mounted() {
     // Cargar detalles del recinto al montarse el componente
     let horarios = []
     for (let i = 0; i < 13; i++) {
@@ -140,15 +149,19 @@ import reservaService from "@/service/reserva.service";
     this.horarios = horarios;
     this.loadRecintoDetails();
   },
-    methods: {
-      alertMe(date){
-        this.date=date;
-        //alert("changed date "+date)
-        this.loadRecintoDetails()
-        this.loadReservas()
+  methods: {
+    Imprimir(){
+      console.log("HOLAAA");
+      descargaService.generar();
+    },
+    alertMe(date) {
+      this.date = date;
+      //alert("changed date "+date)
+      this.loadRecintoDetails()
+      this.loadReservas()
 
-      },
-      loadRecintoDetails() {
+    },
+    loadRecintoDetails() {
       // Obtener el id del recinto desde los parámetros de la ruta
       const recintoId = this.$route.params.id;
 
@@ -172,7 +185,7 @@ import reservaService from "@/service/reserva.service";
       this.horarios.forEach((element) => {
         element.disponible = true
       })
-      reservaService.getByRecinto(this.recinto.recId, this.date.toLocaleDateString('es-CL')+"T"+"00:00:00").then(
+      reservaService.getByRecinto(this.recinto.recId, this.date.toLocaleDateString('es-CL') + "T" + "00:00:00").then(
         (response) => {
           this.reservas = response.data
           for (let reserva of response.data) {
@@ -184,11 +197,11 @@ import reservaService from "@/service/reserva.service";
         })
     }
 
-    }
-
   }
-  </script>
 
-  <style scoped>
-  /* Estilos específicos si es necesario */
-  </style>
+}
+</script>
+
+<style scoped>
+/* Estilos específicos si es necesario */
+</style>

@@ -67,14 +67,9 @@
               <v-card width="400">
                 <v-img height="200" src="@/assets/logo_principal.png" cover class="text-white logo">
                 </v-img>
-                <v-combobox label="Selecciona actividad"
-                    v-model="this.actividadSeleccionada"
-                    :items="this.recinto.recActividades" 
-                    item-title="actNombre" 
-                    item-value="actId" 
-                    return-object
-                    @update:modelValue="seleccionarActividad"
-                    ></v-combobox>
+                <v-combobox label="Selecciona actividad" v-model="this.actividadSeleccionada"
+                  :items="this.recinto.recActividades" item-title="actNombre" item-value="actId" return-object
+                  @update:modelValue="seleccionarActividad"></v-combobox>
                 <v-toolbar color="rgba(0, 0, 0, 0)">
                   <v-toolbar-title class="text-h6">
                     Detalles de tu reserva
@@ -96,7 +91,7 @@
                       </div>
                     </v-timeline-item>
                   </v-timeline>
-                  
+
 
                   <v-divider></v-divider>
 
@@ -260,7 +255,7 @@ export default {
       this.reservaFinal.resInicio = this.date.toLocaleDateString('es-CL') + "T" + horario.title;
       this.reservaFinal.resFin = this.date.toLocaleDateString('es-CL') + "T" + this.detallesReserva[1].time;
       this.reservaFinal.resRecinto.recId = this.recinto.recId;
-      
+
 
       console.log(this.reservaFinal)
 
