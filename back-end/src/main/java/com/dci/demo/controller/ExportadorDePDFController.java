@@ -3,10 +3,7 @@ package com.dci.demo.controller;
 import com.dci.demo.service.GeneradorDePDFService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -16,6 +13,7 @@ import java.util.Date;
 
 @RestController
 @RequestMapping("/pdf/")
+@CrossOrigin(origins = "*")
 public class ExportadorDePDFController {
 
     private GeneradorDePDFService generadorDePDFService;
