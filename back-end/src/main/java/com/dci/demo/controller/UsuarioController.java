@@ -3,20 +3,19 @@ package com.dci.demo.controller;
 import com.dci.demo.domain.Usuario;
 import com.dci.demo.service.UsuarioService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequestMapping("/usuarios/")
 public class UsuarioController {
     private UsuarioService usuarioService;
     public UsuarioController (UsuarioService usuarioService){
         this.usuarioService=usuarioService;
     }
 
+    @PostMapping("crearUsuarios")
     public ResponseEntity<?> crearUsuario(@RequestBody Usuario usuario){
         try {
             Usuario usuarioCreado = usuarioService.crearUsuario(usuario);
