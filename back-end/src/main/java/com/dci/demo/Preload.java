@@ -189,6 +189,7 @@ public class Preload implements CommandLineRunner {
         usuario1.setUsuRol(admin);
         usuarioRepository.save(usuario1);
 
+
         Usuario usuario2 = new Usuario();
         usuario2.setUsuNombre("Juan");
         usuario2.setUsuApellidoPaterno("Perez");
@@ -234,6 +235,15 @@ public class Preload implements CommandLineRunner {
         usuario6.setUsuCorreo("mail@gmail.cl");
         usuario6.setUsuRol(usuario);
         usuarioRepository.save(usuario6);
+
+        Usuario usuario99 = new Usuario();
+        usuario1.setUsuNombre("Invitado");
+        usuario1.setUsuApellidoPaterno("Invitado");
+        usuario1.setUsuApellidoMaterno("Invitado");
+        usuario1.setUsuRut("sin rut");
+        usuario1.setUsuCorreo("sin correo");
+        usuario1.setUsuRol(usuario);
+        usuarioRepository.save(usuario99);
 
        //Crear reservas
         Reserva reserva1 = new Reserva();

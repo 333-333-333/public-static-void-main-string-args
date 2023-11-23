@@ -1,6 +1,7 @@
 package com.dci.demo.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,8 +21,10 @@ public class Reserva {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long resId;
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "dd-MM-yyyy'T'HH:mm:ss")
     private LocalDateTime resInicio;
     @Temporal(TemporalType.TIMESTAMP)
+    @JsonFormat(pattern = "dd-MM-yyyy'T'HH:mm:ss")
     private LocalDateTime resFin;
     @ManyToOne
     private Usuario resUsuario;

@@ -22,7 +22,7 @@ public class ReservaController {
         this.ReservaService = ReservaService;
     }
 
-    @PostMapping
+    @PostMapping("")
     public Reserva crearReserva(@RequestBody Reserva reserva){
         return ReservaService.crearReserva(reserva);
     }
