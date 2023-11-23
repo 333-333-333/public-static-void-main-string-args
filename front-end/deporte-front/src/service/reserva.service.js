@@ -1,13 +1,12 @@
-import apiService from "@/service/api.service";
 import ApiService from "@/service/api.service";
-const url = "recintos";
+const url = "reservas";
 
 export const service = {
     getAll() {
-        return ApiService.get(url, { id: "" });
+        return ApiService.get(url, { id: "admin" });
     },
     get(id) {
-        return apiService.get(url, { id: id });
+        return ApiService.get(url, { id: id });
     },
     create(params) {
         return ApiService.post(url, { params: params });
@@ -18,5 +17,8 @@ export const service = {
     destroy(id) {
         return ApiService.delete(url, { id: id });
     },
+    getByRecinto(id, from){
+        return ApiService.get(url, { id: `${id}/${from}`})
+    }
 };
 export default service;

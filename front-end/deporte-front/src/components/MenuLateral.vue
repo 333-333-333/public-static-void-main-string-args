@@ -1,9 +1,11 @@
 <template>
   <div class="sidebar">
-    <div class="logo-container">
-      <img src="../assets/logo_principal.png" alt="Logo" class="logo-img" />
-    </div>
-    <h2 class="titulo">Selecciona un deporte</h2>
+    <router-link to="/login">
+      <div class="logo-container">
+        <img src="../assets/logo_principal.png" alt="Logo" class="logo-img" />
+      </div>
+    </router-link>
+    <h2 class="titulo">Selecciona una actividad</h2>
     <ul>
       <li :class="{ 'selected': deporteSeleccionado === '' }" @click="filtrarPorDeporte('')">Todos</li>
       <li v-for="deporte in deportes" :key="deporte" :class="{ 'selected': deporteSeleccionado === deporte }" @click="filtrarPorDeporte(deporte)">
@@ -14,6 +16,8 @@
 </template>
 
 <script>
+import actividadService from "@/service/actividad.service"
+
 export default {
   data() {
     return {
@@ -26,6 +30,17 @@ export default {
       this.deporteSeleccionado = deporte;
       this.$emit("filtrar", deporte);
     },
+    loadActividades(){
+      actividadService.getAll().then((response) => {
+        console.log(response)
+        this.deportes = response.data.map((element) => {
+          return element.actNombre;
+        })
+      })
+    }
+  },
+  mounted() {
+    this.loadActividades();
   },
 };
 </script>
