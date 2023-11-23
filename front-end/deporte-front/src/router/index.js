@@ -26,7 +26,7 @@ const routes = [{
     component: () => import('../views/InicioEncargado.vue'),
     meta: {
       requiresAuth: true,
-      role: 1
+      role: 2
     }
   },
   {
@@ -35,8 +35,18 @@ const routes = [{
     component: () => import('../views/InicioAdministrador.vue'),
     meta: {
       requiresAuth: true,
-      role: 2
-    }
+      role: 1
+    },
+  },
+  {
+    path: '/crear-recinto/',
+    name: 'crear-recinto',
+    component: () => import('../views/CrearRecinto.vue'),
+  },
+  {
+    path: '/crear-encargado/',
+    name: 'crear-encargado',
+    component: () => import('../views/CrearEncargado.vue'),
   },
 
 ]

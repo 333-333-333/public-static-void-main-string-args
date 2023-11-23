@@ -1,18 +1,31 @@
-<!-- InicioAdministrador.vue -->
+<!-- InicioAdmin.vue -->
 <template>
-    <div>
-      <h2>Bienvenido, Administrador</h2>
-      <!-- Contenido específico para el inicio de sesión del administrador -->
+  <div class="inicio-admin-container">
+    <menu-lateral />
+    <div class="contenido">
+      <!-- Aquí se mostrará dinámicamente el contenido según la selección del usuario -->
+      <router-view />
     </div>
-  </template>
-  
-  <script>
-  export default {
-    // Puedes agregar lógica específica aquí si es necesario
-  }
-  </script>
-  
-  <style scoped>
-  /* Estilos específicos si es necesario */
-  </style>
-  
+  </div>
+</template>
+
+<script>
+import MenuLateral from "@/components/MenuAdmin.vue";
+
+export default {
+  components: {
+    MenuLateral,
+  },
+};
+</script>
+
+<style scoped>
+.inicio-admin-container {
+  display: flex;
+}
+
+.contenido {
+  flex: 1;
+  padding: 20px;
+}
+</style>
