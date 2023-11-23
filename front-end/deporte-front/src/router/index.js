@@ -21,7 +21,7 @@ const routes = [{
 
   },
   {
-    path: '/inicio-encargado/:id',
+    path: '/inicio-encargado/',
     name: 'inicio-encargado',
     component: () => import('../views/InicioEncargado.vue'),
     meta: {
