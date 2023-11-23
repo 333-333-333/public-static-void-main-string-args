@@ -113,7 +113,7 @@ public class Preload implements CommandLineRunner {
         multicancha_recinto.setRecDireccion("Los castaños 1500");
         multicancha_recinto.setRecPrecio(10000L);
         multicancha_recinto.setRecCapacidad(30L);
-        multicancha_recinto.setRecImagen("https://radiouniversal.cl/wp-content/uploads/2012/06/EstadioLoncoche.jpg");
+        multicancha_recinto.setRecImagen("https://construccionmulticanchas.cl/wp-content/uploads/2019/09/2.jpg");
         multicancha_recinto.setRecTipo(tipo1saved);
         multicancha_recinto.setRecActividades(Arrays.asList(futbol, basketball, voleibol));
         recintoRepository.save(multicancha_recinto);
