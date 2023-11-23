@@ -67,12 +67,19 @@
               <v-card width="400">
                 <v-img height="200" src="@/assets/logo_principal.png" cover class="text-white logo">
                 </v-img>
+                <v-combobox label="Selecciona actividad"
+                    v-model="this.actividadSeleccionada"
+                    :items="this.recinto.recActividades" 
+                    item-title="actNombre" 
+                    item-value="actId" 
+                    return-object
+                    @update:modelValue="seleccionarActividad"
+                    ></v-combobox>
                 <v-toolbar color="rgba(0, 0, 0, 0)">
                   <v-toolbar-title class="text-h6">
                     Detalles de tu reserva
                   </v-toolbar-title>
                 </v-toolbar>
-
                 <v-card-text>
                   <div class="font-weight-bold ms-1 mb-2 text-h6">
                     {{ this.date.toLocaleDateString('es-CL') }}
@@ -89,6 +96,7 @@
                       </div>
                     </v-timeline-item>
                   </v-timeline>
+                  
 
                   <v-divider></v-divider>
 
@@ -121,8 +129,8 @@ import reservaService from "@/service/reserva.service";
 export default {
   data() {
     return {
+      actividadSeleccionada: null,
       reservaFinal: {
-        resId: 0,
         resInicio: "",
         resFin: "",
         resUsuario: {
@@ -203,6 +211,7 @@ export default {
       recintoService.get(recintoId)
         .then((response) => {
           this.recinto = response.data;
+          console.log(this.recinto)
           this.loadReservas();
         })
         .catch((error) => {
@@ -232,17 +241,29 @@ export default {
         })
     },
     irA(ruta) {
-      this.$router.push({ 
+      this.$router.push({
         name: ruta,
         query: {
           reserva: JSON.stringify(this.reservaFinal)
         }
       });
     },
+    seleccionarActividad(actividad) {
+      this.reservaFinal.resActividad.actId = this.actividadSeleccionada.actId;
+    },
     seleccionarHorario(horario) {
       this.detallesReserva[0].time = horario.title;
       this.detallesReserva[1].time = (parseInt(horario.title.split(":")[0]) + 1).toString() + ":00"
       this.detallesReserva[2].time = "$ " + this.recinto.recPrecio;
+
+      this.reservaFinal.total = this.recinto.recPrecio;
+      this.reservaFinal.resInicio = this.date.toLocaleDateString('es-CL') + "T" + horario.title;
+      this.reservaFinal.resFin = this.date.toLocaleDateString('es-CL') + "T" + this.detallesReserva[1].time;
+      this.reservaFinal.resRecinto.recId = this.recinto.recId;
+      
+
+      console.log(this.reservaFinal)
+
     }
   },
 };
