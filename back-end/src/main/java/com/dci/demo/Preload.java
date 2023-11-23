@@ -292,6 +292,70 @@ public class Preload implements CommandLineRunner {
         reserva7.setResUsuario(usuario6);
         reserva7.setResActividad(futbol);
         reservaRepository.save(reserva7);
+
+        Reserva reserva8 = new Reserva();
+        reserva8.setResInicio(LocalDateTime.of(2023,11,24,8,0,0));
+        reserva8.setResFin(LocalDateTime.of(2023,11,24,9,0,0));
+        reserva8.setResRecinto(multicancha_recinto);
+        reserva8.setResUsuario(usuario6);
+        reserva8.setResActividad(futbol);
+        reservaRepository.save(reserva8);
+
+        Reserva reserva9 = new Reserva();
+        reserva9.setResInicio(LocalDateTime.of(2023,11,24,9,0,0));
+        reserva9.setResFin(LocalDateTime.of(2023,11,24,10,0,0));
+        reserva9.setResRecinto(multicancha_recinto);
+        reserva9.setResUsuario(usuario6);
+        reserva9.setResActividad(futbol);
+        reservaRepository.save(reserva9);
+
+        Reserva reserva10 = new Reserva();
+        reserva10.setResInicio(LocalDateTime.of(2023,11,24,12,0,0));
+        reserva10.setResFin(LocalDateTime.of(2023,11,24,13,0,0));
+        reserva10.setResRecinto(multicancha_recinto);
+        reserva10.setResUsuario(usuario6);
+        reserva10.setResActividad(futbol);
+        reservaRepository.save(reserva10);
+
+        Reserva reserva11 = new Reserva();
+        reserva11.setResInicio(LocalDateTime.of(2023,11,24,13,0,0));
+        reserva11.setResFin(LocalDateTime.of(2023,11,24,14,0,0));
+        reserva11.setResRecinto(multicancha_recinto);
+        reserva11.setResUsuario(usuario6);
+        reserva11.setResActividad(futbol);
+        reservaRepository.save(reserva11);
+
+        Reserva reserva12 = new Reserva();
+        reserva12.setResInicio(LocalDateTime.of(2023,11,24,14,0,0));
+        reserva12.setResFin(LocalDateTime.of(2023,11,24,15,0,0));
+        reserva12.setResRecinto(multicancha_recinto);
+        reserva12.setResUsuario(usuario6);
+        reserva12.setResActividad(futbol);
+        reservaRepository.save(reserva12);
+
+        Reserva reserva13 = new Reserva();
+        reserva13.setResInicio(LocalDateTime.of(2023,11,24,15,0,0));
+        reserva13.setResFin(LocalDateTime.of(2023,11,24,16,0,0));
+        reserva13.setResRecinto(multicancha_recinto);
+        reserva13.setResUsuario(usuario6);
+        reserva13.setResActividad(futbol);
+        reservaRepository.save(reserva13);
+
+        Reserva reserva14 = new Reserva();
+        reserva14.setResInicio(LocalDateTime.of(2023,11,24,16,0,0));
+        reserva14.setResFin(LocalDateTime.of(2023,11,24,17,0,0));
+        reserva14.setResRecinto(multicancha_recinto);
+        reserva14.setResUsuario(usuario6);
+        reserva14.setResActividad(futbol);
+        reservaRepository.save(reserva14);
+
+        Reserva reserva15 = new Reserva();
+        reserva15.setResInicio(LocalDateTime.of(2023,11,24,17,0,0));
+        reserva15.setResFin(LocalDateTime.of(2023,11,24,18,0,0));
+        reserva15.setResRecinto(multicancha_recinto);
+        reserva15.setResUsuario(usuario6);
+        reserva15.setResActividad(futbol);
+        reservaRepository.save(reserva15);
     }
 
 }
