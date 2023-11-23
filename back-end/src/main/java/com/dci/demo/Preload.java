@@ -21,12 +21,15 @@ public class Preload implements CommandLineRunner {
 
     private final ReservaRepository reservaRepository;
 
-    public Preload (ReservaRepository reservaRepository, RecintoRepository recintoRepository, TipoRepository tipoRepository, ActividadRepository actividadRepository, UsuarioRepository usuarioRepository){
+    private final RolRepository rolRepository;
+
+    public Preload (ReservaRepository reservaRepository, RecintoRepository recintoRepository, TipoRepository tipoRepository, ActividadRepository actividadRepository, UsuarioRepository usuarioRepository, RolRepository rolRepository){
         this.recintoRepository=recintoRepository;
         this.tipoRepository=tipoRepository;
         this.actividadRepository=actividadRepository;
         this.usuarioRepository=usuarioRepository;
         this.reservaRepository=reservaRepository;
+        this.rolRepository=rolRepository;
     }
 
     public void run(String... args) throws Exception {
@@ -161,12 +164,15 @@ public class Preload implements CommandLineRunner {
         //Crear roles
         Rol rol1 = new Rol();
         rol1.setRolNombre("Administrador");
+        rol1 = rolRepository.save(rol1);
 
         Rol rol2 = new Rol();
         rol2.setRolNombre("Usuario");
+        rol2 = rolRepository.save(rol2);
 
         Rol rol3 = new Rol();
         rol3.setRolNombre("Encargado");
+        rol3 = rolRepository.save(rol3);
 
 
         //Crear usuarios
