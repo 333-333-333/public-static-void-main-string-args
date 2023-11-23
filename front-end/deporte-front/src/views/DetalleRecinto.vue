@@ -94,7 +94,7 @@
                   <v-divider></v-divider>
 
                   <v-list class="mt-6">
-                    <v-list-item v-for="(item, i) in botones" :key="i" :value="item" color="primary">
+                    <v-list-item v-for="(item, i) in botones" :key="i" :value="item" color="primary" @click="irA(item.ruta)">
                       <template v-slot:prepend>
                         <v-avatar>
                           <v-img :src="item.img"></v-img>
@@ -131,15 +131,18 @@ export default {
       botones: [{
         title: 'Pago online',
         value: 1,
-        img: "https://surempresa.com/37-large_default/webpay-plus.jpg"
+        img: "https://surempresa.com/37-large_default/webpay-plus.jpg",
+        ruta: "pago-online"
       }, {
         title: 'Pago por caja vecina',
         value: 2,
-        img: "https://seeklogo.com/images/C/caja-vecina-logo-EE21EC6A69-seeklogo.com.png"
+        img: "https://seeklogo.com/images/C/caja-vecina-logo-EE21EC6A69-seeklogo.com.png",
+        ruta: "pago-vecino"
       }, {
         title: 'Pago en municipalidad',
         value: 3,
-        img: "https://cdn-icons-png.flaticon.com/512/761/761603.png"
+        img: "https://cdn-icons-png.flaticon.com/512/761/761603.png",
+        ruta: "pago-municipalidad"
       }],
       messages: [
         {
@@ -212,6 +215,9 @@ export default {
             }
           }
         })
+    },
+    irA(ruta){
+      this.$router.push("/"+ruta)
     }
   },
 };

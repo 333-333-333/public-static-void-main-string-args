@@ -38,6 +38,21 @@ const routes = [{
       role: 2
     }
   },
+  {
+    path: "/pago-online",
+    name: "pago-online",
+    component: () => import('../views/PagoOnline.vue'),
+  },
+  {
+    path: "/pago-vecino",
+    name: "pago-vecino",
+    component: () => import('../views/PagoVecino.vue'),
+  },
+  {
+    path: "/pago-municipalidad",
+    name: "pago-municipalidad",
+    component: () => import('../views/PagoMunicipalidad.vue'),
+  }
 
 ]
 
