@@ -41,7 +41,7 @@ export default {
 
         // Redirigir al usuario según su rol
         if (user.rol === 1) {
-          this.$router.push('/inicio-admin');
+          this.$router.push('/crear-recinto');
         } else if (user.rol === 2) {
           this.$router.push('/inicio-encargado');
         }

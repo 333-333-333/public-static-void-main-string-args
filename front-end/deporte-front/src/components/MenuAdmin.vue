@@ -1,4 +1,3 @@
-<!-- MenuLateral.vue -->
 <template>
     <div class="menu-admin">
       <img src="../assets/logo_principal.png" alt="Logo Menú" class="logo-menu" />
@@ -38,30 +37,32 @@
   
   .logo-menu {
     width: 80%;
-  
     height: auto;
     margin-bottom: 80px;
-    display: block; /* Cambiado a display de bloque */
-    margin-right: auto; /* Centra el logo horizontalmente */
-    margin-left: auto; /* Centra el logo horizontalmente */
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
   }
   
   .boton {
     background-color: white;
-    border: 2px solid orange;
-    border-radius: 10px;
+   
+    border-radius: 15px;
     margin-top: 50px;
     width: 80%;
-  
-    display: block; /* Cambiado a display de bloque */
-    margin-right: 10%; /* Centra los botones horizontalmente */
-    margin-left:  10%; /* Centra los botones horizontalmente */
+    display: block;
+    margin-right: 10%;
+    margin-left: 10%;
     cursor: pointer;
-
-  padding: 13px; /* Ajusta el tamaño de los botones */
-  font-size: 19px; /* Tamaño de letra de los botones */
+    padding: 13px;
+    font-size: 19px;
+    transition: background-color 0.3s; /* Transición de color en 0.3 segundos */
   }
   
- 
+  /* Agregado: Cambia el color de fondo al pasar el ratón sobre el botón */
+  .boton:hover {
+    background-color: #FFD699; /* Nuevo color de fondo al pasar el ratón */
+  }
+  
   </style>
   
