@@ -6,6 +6,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.Arrays;
 
@@ -224,14 +226,42 @@ public class Preload implements CommandLineRunner {
 
 
 
-        //Crear reservas
+       /* //Crear reservas
         Reserva reserva1 = new Reserva();
         reserva1.setResInicio(Date.from(Instant.ofEpochSecond(1700753215)));
         reserva1.setResFin(Date.from(Instant.ofEpochSecond(1700760415)));
         reserva1.setResRecinto(recinto1);
         reserva1.setResUsuario(usuario2);
         reserva1.setResActividad(actividad1);
-        reservaRepository.save(reserva1);
+        reservaRepository.save(reserva1);*/
+
+        Reserva reserva2 = new Reserva();
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            java.util.Date utilDate = dateFormat.parse("25-11-2023 12:00:00");
+
+            // Convertir java.util.Date a java.sql.Date
+            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+
+            reserva2.setResInicio(sqlDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+            java.util.Date utilDate = dateFormat.parse("25-11-2023 13:00:00");
+
+            // Convertir java.util.Date a java.sql.Date
+            java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
+
+            reserva2.setResFin(sqlDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        reserva2.setResRecinto(recinto1);
+        reserva2.setResUsuario(usuario2);
+        reserva2.setResActividad(actividad1);
+        reservaRepository.save(reserva2);
 
 
 
