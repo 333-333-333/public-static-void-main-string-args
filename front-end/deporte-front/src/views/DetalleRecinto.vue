@@ -32,9 +32,9 @@
 
         <v-col cols="12" md="4">
           <v-card class="mx-auto" max-width="600">
-            <v-toolbar color="secondary">
+            <v-toolbar color="#FEBC4B">
 
-              <v-btn variant="text" icon="mdi-magnify" class="ma-3"></v-btn>
+              <v-btn variant="text" icon="mdi-hand-okay" class="ma-3"></v-btn>
               <v-toolbar-title>Horarios disponibles</v-toolbar-title>
 
             </v-toolbar>
@@ -51,7 +51,8 @@
                 </template>
 
                 <template v-slot:append>
-                  <v-btn v-if="horario.disponible" color="green" icon="mdi-arrow-right-circle" variant="text"></v-btn>
+                  <v-btn v-if="horario.disponible" color="green" icon="mdi-arrow-right-circle" variant="text"
+                    @click="seleccionarHorario(horario)"></v-btn>
                   <v-btn v-else color="grey-lighten-1" icon="mdi-information" variant="text"></v-btn>
                 </template>
               </v-list-item>
@@ -64,37 +65,44 @@
           <v-container>
             <v-row justify="space-around">
               <v-card width="400">
-                <v-img height="200"
-                  src="https://cdn.discordapp.com/attachments/995770872109477990/1177040754376462497/tenseiken9.jpg?ex=65710fa0&is=655e9aa0&hm=4bb557c6600c581c7dbaca8b007ef518879f317354a70b5b82922782d9e47fb1&"
-                  cover class="text-white">
+                <v-img height="200" src="@/assets/logo_principal.png" cover class="text-white logo">
                 </v-img>
+                <v-combobox label="Selecciona actividad"
+                    v-model="this.actividadSeleccionada"
+                    :items="this.recinto.recActividades" 
+                    item-title="actNombre" 
+                    item-value="actId" 
+                    return-object
+                    @update:modelValue="seleccionarActividad"
+                    ></v-combobox>
                 <v-toolbar color="rgba(0, 0, 0, 0)">
                   <v-toolbar-title class="text-h6">
                     Detalles de tu reserva
                   </v-toolbar-title>
                 </v-toolbar>
-
                 <v-card-text>
-                  <div class="font-weight-bold ms-1 mb-2">
+                  <div class="font-weight-bold ms-1 mb-2 text-h6">
                     {{ this.date.toLocaleDateString('es-CL') }}
                   </div>
 
                   <v-timeline density="compact" align="start">
-                    <v-timeline-item v-for="message in messages" :key="message.time" :dot-color="message.color"
+                    <v-timeline-item v-for="message in detallesReserva" :key="message.time" :dot-color="message.color"
                       size="x-small">
                       <div class="mb-4">
-                        <div class="font-weight-normal">
-                          <strong>{{ message.from }}</strong> @{{ message.time }}
+                        <div class="font-weight-normal text-h6">
+                          <strong>{{ message.from }}</strong> {{ message.time }}
                         </div>
                         <div>{{ message.message }}</div>
                       </div>
                     </v-timeline-item>
                   </v-timeline>
+                  
 
                   <v-divider></v-divider>
 
                   <v-list class="mt-6">
-                    <v-list-item v-for="(item, i) in botones" :key="i" :value="item" color="primary" @click="irA(item.ruta)">
+                    <v-list-item v-for="(item, i) in botones" :key="i" :value="item" color="primary"
+                      @click="irA(item.ruta)">
                       <template v-slot:prepend>
                         <v-avatar>
                           <v-img :src="item.img"></v-img>
@@ -121,6 +129,21 @@ import reservaService from "@/service/reserva.service";
 export default {
   data() {
     return {
+      actividadSeleccionada: null,
+      reservaFinal: {
+        resInicio: "",
+        resFin: "",
+        resUsuario: {
+          usuId: 99
+        },
+        resRecinto: {
+          recId: 0
+        },
+        resActividad: {
+          actId: 0
+        },
+        total: 0,
+      },
       nowDate: new Date().toISOString().slice(0, 10),
       date: (new Date(Date.now() + ((new Date()).getTimezoneOffset() * 60000))), //era +, lol,
       pickerDate: null,
@@ -144,28 +167,26 @@ export default {
         img: "https://cdn-icons-png.flaticon.com/512/761/761603.png",
         ruta: "pago-municipalidad"
       }],
-      messages: [
+      detallesReserva: [
         {
           from: 'Hora inicio',
-          message: 'hora inicio',
-          time: '10:37am',
+          message: 'Debes llegar puntual!',
+          time: '',
           color: 'green',
         },
         {
           from: 'Hora termino',
-          message: 'Did you still want to grab lunch today?',
-          time: '9:47am',
+          message: '',
+          time: '',
           color: 'deep-purple-lighten-1',
         },
         {
-          from: 'Precio Total',
-          message: `3 horas x $12000 = 34.000`,
+          from: 'Total',
+          message: `Tienes 3 formas de pago:`,
           time: '',
           color: 'deep-purple-lighten-1',
         },
       ],
-      periodos: ['09:00 AM - 12:00 PM', '01:00 PM - 04:00 PM', '05:00 PM - 08:00 PM'],
-      periodoSeleccionado: null
     };
   },
   mounted() {
@@ -179,6 +200,7 @@ export default {
     }
     this.horarios = horarios;
     this.loadRecintoDetails();
+
   },
   methods: {
     loadRecintoDetails() {
@@ -189,6 +211,8 @@ export default {
       recintoService.get(recintoId)
         .then((response) => {
           this.recinto = response.data;
+          console.log(this.recinto)
+          this.loadReservas();
         })
         .catch((error) => {
           console.error('Error al obtener detalles del recinto:', error);
@@ -205,7 +229,7 @@ export default {
       this.horarios.forEach((element) => {
         element.disponible = true
       })
-      reservaService.getByRecinto(this.recinto.recId, this.date.toLocaleDateString('es-CL')+"T"+"00:00:00").then(
+      reservaService.getByRecinto(this.recinto.recId, this.date.toLocaleDateString('es-CL') + "T" + "00:00:00").then(
         (response) => {
           this.reservas = response.data
           for (let reserva of response.data) {
@@ -216,11 +240,40 @@ export default {
           }
         })
     },
-    irA(ruta){
-      this.$router.push("/"+ruta)
+    irA(ruta) {
+      this.$router.push({
+        name: ruta,
+        query: {
+          reserva: JSON.stringify(this.reservaFinal)
+        }
+      });
+    },
+    seleccionarActividad(actividad) {
+      this.reservaFinal.resActividad.actId = this.actividadSeleccionada.actId;
+    },
+    seleccionarHorario(horario) {
+      this.detallesReserva[0].time = horario.title;
+      this.detallesReserva[1].time = (parseInt(horario.title.split(":")[0]) + 1).toString() + ":00"
+      this.detallesReserva[2].time = "$ " + this.recinto.recPrecio;
+
+      this.reservaFinal.total = this.recinto.recPrecio;
+      this.reservaFinal.resInicio = this.date.toLocaleDateString('es-CL') + "T" + horario.title;
+      this.reservaFinal.resFin = this.date.toLocaleDateString('es-CL') + "T" + this.detallesReserva[1].time;
+      this.reservaFinal.resRecinto.recId = this.recinto.recId;
+      
+
+      console.log(this.reservaFinal)
+
     }
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+.logo {
+  max-width: 100%;
+  max-height: 150px;
+  padding: 10px;
+  margin: 15px;
+}
+</style>

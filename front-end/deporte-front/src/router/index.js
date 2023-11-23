@@ -22,6 +22,10 @@ const routes = [{
   },
   {
     path: '/inicio-encargado/',
+    redirect: 'inicio-encargado/1'
+  },
+  {
+    path: '/inicio-encargado/:id',
     name: 'inicio-encargado',
     component: () => import('../views/InicioEncargado.vue'),
     meta: {
@@ -51,6 +55,7 @@ const routes = [{
   {
     path: "/pago-online",
     name: "pago-online",
+    props: true,
     component: () => import('../views/PagoOnline.vue'),
   },
   {
@@ -61,6 +66,7 @@ const routes = [{
   {
     path: "/pago-municipalidad",
     name: "pago-municipalidad",
+    props: true,
     component: () => import('../views/PagoMunicipalidad.vue'),
   }
 
