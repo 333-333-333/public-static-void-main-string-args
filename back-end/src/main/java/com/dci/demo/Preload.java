@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 
 import java.sql.Date;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 
 @Component
@@ -226,15 +228,20 @@ public class Preload implements CommandLineRunner {
 
         //Crear reservas
         Reserva reserva1 = new Reserva();
-        reserva1.setResInicio(Date.from(Instant.ofEpochSecond(1700753215)));
-        reserva1.setResFin(Date.from(Instant.ofEpochSecond(1700760415)));
+        reserva1.setResInicio(LocalDateTime.of(2023,11,23,10,0,0));
+        reserva1.setResFin(LocalDateTime.of(2023,11,23,11,0,0));
         reserva1.setResRecinto(recinto1);
         reserva1.setResUsuario(usuario2);
         reserva1.setResActividad(actividad1);
         reservaRepository.save(reserva1);
 
-
-
+        Reserva reserva2 = new Reserva();
+        reserva2.setResInicio(LocalDateTime.of(2023,11,23,11,0,0));
+        reserva2.setResFin(LocalDateTime.of(2023,11,23,12,0,0));
+        reserva2.setResRecinto(recinto1);
+        reserva2.setResUsuario(usuario2);
+        reserva2.setResActividad(actividad1);
+        reservaRepository.save(reserva2);
 
     }
 
