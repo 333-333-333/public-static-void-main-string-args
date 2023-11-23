@@ -216,7 +216,7 @@ export default {
         (response) => {
           this.reservas = response.data
           for (let reserva of response.data) {
-            if (reserva.resInicio.split("T")[0] == this.date.toLocaleDateString('en-CA')) {
+            if (reserva.resInicio.split("T")[0] == this.date.toLocaleDateString('es-CL')) {
               let hora = reserva.resInicio.split("T")[1].split(":")[0]
               this.horarios[hora - 8].disponible = false
             }
