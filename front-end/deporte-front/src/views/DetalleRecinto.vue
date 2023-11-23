@@ -25,6 +25,7 @@
           <v-card class="mx-auto" max-width="400">
             <v-locale-provider locale="es">
               <v-date-picker title="Elija una fecha" ref="picker" v-model="date" :picker-date.sync="pickerDate"
+        :min="nowDate"
                 @update:modelValue="seleccionarFecha"></v-date-picker>
             </v-locale-provider>
           </v-card>
@@ -121,6 +122,7 @@ import reservaService from "@/service/reserva.service";
 export default {
   data() {
     return {
+      nowDate: new Date().toISOString().slice(0,10),
       date: (new Date(Date.now() + ((new Date()).getTimezoneOffset() * 60000))), //era +, lol,
       pickerDate: null,
       recinto: null,
