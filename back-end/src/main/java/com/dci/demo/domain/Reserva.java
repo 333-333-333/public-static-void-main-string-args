@@ -23,7 +23,6 @@ public class Reserva {
     private LocalDateTime resInicio;
     @Temporal(TemporalType.TIMESTAMP)
     private LocalDateTime resFin;
-
     @ManyToOne
     private Usuario resUsuario;
     @ManyToOne
